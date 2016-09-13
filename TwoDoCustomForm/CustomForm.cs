@@ -28,14 +28,20 @@ namespace TwoDoCustomForm
         private bool isMouseButtonDown = false;
         private bool isMaximized = false;
 
-        //Controls
+        //Custom Controls
         private CustomMenuBar MainMenu = new CustomMenuBar();
         private CustomStatusBar StatusBar = new CustomStatusBar();
         private CustomBorder Border = new CustomBorder();
+        private CustomButtonBar SideBar = new CustomButtonBar();
+        private CustomButtonBar ToolBox = new CustomButtonBar();
+
+        //Containers
         private Rectangle DefaultFormSize = new Rectangle();
         private Rectangle StatusBarGrip = new Rectangle();
         private Rectangle ControlButtonsContainer = new Rectangle();
         private Rectangle MenuContainer = new Rectangle();
+        private Rectangle SideBarContainer = new Rectangle();
+        private Rectangle ToolBoxContainer = new Rectangle();
         private GraphicsPath MenuButtonsBox = new GraphicsPath();
 
         public CustomForm()
@@ -58,6 +64,27 @@ namespace TwoDoCustomForm
             MainMenu.MenuButtons.Add(new CustomMenuBarButton(CustomMenuBarButton.MenuBarButtonType.Maximize, Color.FromArgb(124, 13, 2), Color.FromArgb(251, 164, 48)));
             MainMenu.MenuButtons.Add(new CustomMenuBarButton(CustomMenuBarButton.MenuBarButtonType.Minimize, Color.FromArgb(3, 63, 126),Color.FromArgb(119,217, 246)));
 
+
+
+
+            //---------------------  Change          
+            CustomMenuStrip ms = new CustomMenuStrip(MenuContainer);
+            //ms.Dock = DockStyle.None;
+            //ms.SetBounds(MenuContainer.X - 4 , MenuContainer.Y + 2, MenuContainer.Width, MenuContainer.Height);
+            
+            TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem testc = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("File");
+            
+            TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem b = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("caramba");
+            b.DropDownItems.Add(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("cor"));
+            testc.DropDownItems.Add(b);
+            testc.DropDownItems.Add(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Exit"));
+            ms.Items.Add(testc);
+            ms.Items.Add(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Edit"));
+            ms.BackColor = Color.Transparent;
+           
+            //ms.BackColor = Color.FromArgb(3, 63, 126);
+            this.Controls.Add(ms);
+            //-------------------------------
         }
 
         private void SetDefaultValues()
@@ -259,18 +286,48 @@ namespace TwoDoCustomForm
             Border.Render(rcBorder, e.Graphics);
             DrawButtonsBox(e.Graphics);
             DrawMenuBar(e.Graphics);
+            DrawToolBox(e.Graphics);
+            DrawSideBar(e.Graphics);
 
             // build Menu buttons box:
             MenuButtonsBox = MainMenu.BuildMenuButtonsBox(ControlButtonsContainer);
+        }
+
+        private void DrawToolBox(Graphics graphics)
+        {
+            int sideBarWidth = this.ClientRectangle.Width -2;
+            int topOffset = MenuContainer.Height + 2;
+            int rectOffset = 1;
+            int sideBarHight = 40;
+
+            ToolBoxContainer = new Rectangle(rectOffset, topOffset, sideBarWidth, sideBarHight);
+            //reder de menu itens
+            ToolBox.RenderButtonBar(graphics, ToolBoxContainer); 
+        }
+
+        private void DrawSideBar(Graphics graphics)
+        {
+            int sideBarWidth = 150;
+            int topOffset = MenuContainer.Height + ToolBoxContainer.Height + 2;
+            int rectOffset = 1;
+            int sideBarHight = this.ClientRectangle.Height - //application size
+                                    StatusBar.BarHeight -    //status bar size
+                                    ToolBoxContainer.Height - //toolbox size
+                                    MenuContainer.Height -   //menubar size
+                                    4;                       //some space for the borers dont overlay
+            SideBarContainer = new Rectangle(rectOffset, topOffset, sideBarWidth, sideBarHight);
+            //reder de menu itens
+            SideBar.RenderButtonBar(graphics, SideBarContainer);  
         }
 
         private void DrawMenuBar(Graphics graphics)
         {            
             int titleBarWidth = ControlButtonsContainer.Left - 3;
             int topOffset = 1;
-            int rectOffset = 1;           
+            int rectOffset = 1;
+            int menuBarHight = 25;
 
-            MenuContainer = new Rectangle(rectOffset, topOffset, titleBarWidth, 25);
+            MenuContainer = new Rectangle(rectOffset, topOffset, titleBarWidth, menuBarHight);
             //reder de menu itens
             MainMenu.RenderMenuBar(graphics, MenuContainer);            
         }

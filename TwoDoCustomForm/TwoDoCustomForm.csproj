@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AntiAlias.cs" />
+    <Compile Include="CustomBar.cs" />
     <Compile Include="CustomBarItem.cs" />
     <Compile Include="CustomBorder.cs" />
     <Compile Include="CustomForm.cs">
@@ -49,6 +50,11 @@
     </Compile>
     <Compile Include="CustomGrip.cs" />
     <Compile Include="CustomMenuBar.cs" />
+    <Compile Include="CustomMenuStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomButtonBar.cs" />
+    <Compile Include="CustomButton.cs" />
     <Compile Include="CustomStatusBar.cs" />
     <Compile Include="CustomMenuBarButton.cs" />
     <Compile Include="CustomUtils.cs" />

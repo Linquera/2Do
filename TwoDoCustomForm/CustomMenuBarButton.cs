@@ -53,11 +53,12 @@ namespace TwoDoCustomForm
         {
             Pen pen = new Pen(ButtonSymbolColor);
             Rectangle rcBtn = new Rectangle(x, y, Width, Height);
-            if (Hovering)
-            {
+            //works, but I didn't like much
+            //if (Hovering)
+            //{
                 //to highligth the hovered button
                 //FillButton(rcBtn, graphics, ButtonColorStart, ButtonColorEnd, buttonBox);
-            }
+            //}
             
             if (Hovering)
                 pen = new Pen(ButtonHoverCollor);

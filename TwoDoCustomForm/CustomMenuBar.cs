@@ -7,10 +7,9 @@ using System.Text;
 
 namespace TwoDoCustomForm
 {
-    public class CustomMenuBar
+    public class CustomMenuBar : CustomBar
     {
         //color components
-        private List<Color> MenuBarColorMix { get; set; }
         private List<Color> MenuButtonsColorMix { get; set; }
 
         //Control Components
@@ -18,14 +17,10 @@ namespace TwoDoCustomForm
 
         public Color ButtonBoxInnerBorder { get; set; }
         public Color ButtonBoxOuterBorder { get; set; }
-        public Color MenuGradientColorStart { get; set; }
-        public Color MenuGradientColorEnd { get; set; }
-        public Color MenuColor { get; set; }
         
         public CustomMenuBar()
         {
             MenuButtonsColorMix = new List<Color>();
-            MenuBarColorMix = new List<Color>();
             setDefaultCustomColors();              
         }
 
@@ -38,18 +33,6 @@ namespace TwoDoCustomForm
             MenuButtonsColorMix.Add(Color.FromArgb(71, 71, 71));
             MenuButtonsColorMix.Add(Color.FromArgb(112, 106, 108));
 
-            // Default titlebar mix colors:            
-            MenuBarColorMix.Add(Color.FromArgb(245, 245, 245));
-            MenuBarColorMix.Add(Color.FromArgb(93, 93, 93));
-            MenuBarColorMix.Add(Color.FromArgb(45, 45, 45));
-            MenuBarColorMix.Add(Color.FromArgb(30, 30, 30));
-            MenuBarColorMix.Add(Color.FromArgb(52, 52, 52)); 
-
-            MenuGradientColorStart = Color.FromArgb(60, 60, 60);
-            MenuGradientColorEnd = Color.FromArgb(42, 42, 42);
-
-            MenuColor = Color.FromArgb(52, 52, 52);
-            
             // Default buttonBox border colors:
             ButtonBoxInnerBorder = Color.FromArgb(29, 8, 5);
             ButtonBoxOuterBorder = Color.FromArgb(60, 65, 68);
@@ -128,44 +111,7 @@ namespace TwoDoCustomForm
 
         public void RenderMenuBar(Graphics graphics, Rectangle rec)
         {
-            FillMenuBar(graphics, rec);
-        }
-        
-        private void FillMenuBar(Graphics graphics, Rectangle rec)
-        {
-            GraphicsPath menuBarPath = new GraphicsPath();
-            menuBarPath.AddRectangle(rec);
-            using (AntiAlias aa = new AntiAlias(graphics))
-            {               
-                RectangleF rcLinearFill = menuBarPath.GetBounds();
-                graphics.SetClip(menuBarPath);
-                using (LinearGradientBrush lgbLinearFill = new LinearGradientBrush(rcLinearFill, MenuGradientColorStart, MenuGradientColorEnd, LinearGradientMode.Vertical))
-                {
-
-                    graphics.FillRectangle(lgbLinearFill, rcLinearFill);
-                }
-
-                graphics.ResetClip();
-                DrawMenuBarBorder(graphics, rec, Color.FromArgb(0, 0, 0), false);
-                DrawMenuBarBorder(graphics, rec, MenuColor, true);
-            }
-            menuBarPath.Dispose();
-        }
-
-        private void DrawMenuBarBorder(Graphics graphics, Rectangle rec, Color color, bool isInnerBorder)
-        {
-            if (isInnerBorder)
-            {
-                rec.Inflate(1, 1);
-            }
-            using (GraphicsPath gp = new GraphicsPath())
-            {
-                gp.AddRectangle(rec);
-                using (Pen border = new Pen(color))
-                {
-                    graphics.DrawPath(border, gp);
-                }
-            }
-        }       
+            base.RenderBar(graphics, rec);
+        }        
     }
 }
