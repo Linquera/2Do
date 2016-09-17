@@ -15,6 +15,7 @@ namespace TwoDo
         public TwoDoMainForm()
         {
             InitializeComponent();
+            ControlsController.AddMenus(this);
         }
     }
 }

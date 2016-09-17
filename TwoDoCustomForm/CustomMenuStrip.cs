@@ -19,6 +19,7 @@ namespace TwoDoCustomForm
         {
             this.Dock = DockStyle.None;
             this.SetBounds(container.X - 4, container.Y + 2, container.Width, container.Height);
+            this.BackColor = Color.Transparent;
         }
 
         private class CustomRenderer : ToolStripProfessionalRenderer
@@ -53,7 +54,12 @@ namespace TwoDoCustomForm
             public CustomMenuStripItem(string description) : base(description)
             {                
                 this.ForeColor = Color.White;
-            }                        
+            }
+
+            public CustomMenuStripItem(string description, Image image) : base(description, image)
+            {
+                this.ForeColor = Color.White;
+            }
         }
     }    
 }
