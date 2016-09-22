@@ -54,7 +54,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CustomButtonBar.cs" />
-    <Compile Include="CustomButton.cs" />
     <Compile Include="CustomStatusBar.cs" />
     <Compile Include="CustomMenuBarButton.cs" />
     <Compile Include="CustomUtils.cs" />

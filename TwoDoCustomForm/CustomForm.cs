@@ -35,12 +35,12 @@ namespace TwoDoCustomForm
         private bool isMaximized = false;
 
         //Custom Controls
-        private CustomMenuBar MainMenuBar = new CustomMenuBar();
-        private CustomStatusBar StatusBar = new CustomStatusBar();
-        private CustomBorder Border = new CustomBorder();
-        private CustomButtonBar SideBar = new CustomButtonBar();
-        private CustomButtonBar ToolBox = new CustomButtonBar();
-        private CustomMenuStrip CustomMenu;
+        public CustomMenuBar MainMenuBar = new CustomMenuBar();
+        public CustomStatusBar StatusBar = new CustomStatusBar();
+        public CustomBorder Border = new CustomBorder();
+        public CustomButtonBar SideBar = new CustomButtonBar();
+        public CustomButtonBar ToolBox = new CustomButtonBar();
+        public CustomMenuStrip CustomMenu;
 
         public CustomMenuStrip MainMenu { get { return CustomMenu; } }
 
@@ -75,6 +75,19 @@ namespace TwoDoCustomForm
 
             CustomMenu = new CustomMenuStrip(MenuContainer);
             this.Controls.Add(CustomMenu);            
+        }
+
+        protected void ShowButtons()
+        {
+            foreach (var button in ToolBox.Buttons)
+            {
+                this.Controls.Add(button);
+            }
+
+            foreach (var button in SideBar.Buttons)
+            {
+                this.Controls.Add(button);
+            }
         }
 
         private void SetDefaultValues()
@@ -295,10 +308,11 @@ namespace TwoDoCustomForm
                 int sideBarWidth = this.ClientRectangle.Width - 2;
                 int topOffset = MenuContainer.Height + 2;
                 int rectOffset = 1;
-                int sideBarHight = 40;
+                int sideBarHight = 45;
 
                 ToolBoxContainer = new Rectangle(rectOffset, topOffset, sideBarWidth, sideBarHight);
                 //reder de menu itens
+                ToolBox.ButtonFillWholeBar = true;
                 ToolBox.RenderButtonBar(graphics, ToolBoxContainer);
             }
         }
@@ -317,6 +331,7 @@ namespace TwoDoCustomForm
                                         4;                       //some space for the borers dont overlay
                 SideBarContainer = new Rectangle(rectOffset, topOffset, sideBarWidth, sideBarHight);
                 //reder de menu itens
+                SideBar.ButtonFillWholeBar = true;
                 SideBar.RenderButtonBar(graphics, SideBarContainer);
             }
         }

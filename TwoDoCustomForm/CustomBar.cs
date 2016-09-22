@@ -17,6 +17,9 @@ namespace TwoDoCustomForm
         public Color BarGradientColorStart { get; set; }
         public Color BarGradientColorEnd { get; set; }
         public Color BarColor { get; set; }
+        private Rectangle barArea;
+
+        protected Rectangle BarArea { get { return barArea; } }
 
         public CustomBar()
         {
@@ -41,6 +44,7 @@ namespace TwoDoCustomForm
 
         public void RenderBar(Graphics graphics, Rectangle rec)
         {
+            barArea = rec;
             GraphicsPath sideBarPath = new GraphicsPath();
             sideBarPath.AddRectangle(rec);
             using (AntiAlias aa = new AntiAlias(graphics))

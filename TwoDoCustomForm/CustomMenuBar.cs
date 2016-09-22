@@ -77,7 +77,7 @@ namespace TwoDoCustomForm
                     {
                         btn.LeftOffset = _x;
                         btn.TopOffset = _y;
-                        btn.RenderMenuBarButton(btn.LeftOffset, btn.TopOffset, graphics, buttonBox);
+                        btn.RenderMenuBarButton(btn.LeftOffset, btn.TopOffset, graphics);
                         _x -= btn.Width + 1;
                     }
                     graphics.ResetClip();

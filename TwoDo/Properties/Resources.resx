@@ -118,97 +118,283 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="addchar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\addchar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bAnimation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bAnimation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="addlore" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\addlore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bAtributes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bAtributes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="addskill" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\addskill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bCharacter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bCharacter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="animation" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\animation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bCompletation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bCompletation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="atributes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\atributes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bConfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="completation" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\completation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bCustomAtributes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bCustomAtributes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="config" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\config.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bCustomChars" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bCustomChars.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bDelete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bDelete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="duplicate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\duplicate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bDuplicate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bDuplicate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="editor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\editor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bEditor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bEditor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bExit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bExit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="export" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\export.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bExport" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bExport.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="import" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\import.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bImport" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bImport.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="item" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\item.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bItem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bItem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="list" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\list.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bLore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bLore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="map" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\map.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bMap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="maplink" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\maplink.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bMaplink" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bMaplink.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="newFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\newFile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bNewFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bNewFile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="open" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bOpen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bOpen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="password" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\password.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bPassword" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bPassword.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="quest" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\quest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bQuest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bQuest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="redo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\redo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bRedo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bRedo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="save" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bSave" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bSave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bSearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bSearch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="selectAll" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\selectAll.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bSelectAll" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bSelectAll.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="spawnPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\spawnPoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bSkill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bSkill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bSkillList" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bSkillList.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="storyline" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\storyline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bSpawnPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bSpawnPoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="undo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\undo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="viewlist" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\viewlist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bStoryline" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bStoryline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_interface" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\interface.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bUundo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bUundo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mAnimation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mAnimation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mAtributes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mAtributes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mCharacter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mCharacter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mCompletation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mCompletation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mConfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mCustomAtributes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mCustomAtributes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mCustomChars" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mCustomChars.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mDelete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mDelete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mDuplicate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mDuplicate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mEditor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mEditor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mExit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mExit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mExport" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mExport.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mImport" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mImport.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mItem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mItem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mLore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mLore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mNewFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mNewFile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mOpen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mOpen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mPassword" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mPassword.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mQuest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mQuest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mRedo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mRedo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mSave" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mSave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mSearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mSearch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mSelectAll" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mSelectAll.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mSkill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mSkill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mSkillList" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mSkillList.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mSpawnPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mSpawnPoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mStoryline" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mStoryline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mUndo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mUndo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sAnimation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sAnimation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sAtributes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sAtributes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sCharacter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sCharacter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sCompletation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sCompletation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sConfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sCustomAtributes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sCustomAtributes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sCustomChars" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sCustomChars.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sDelete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sDelete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sDuplicate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sDuplicate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sEditor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sEditor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sExit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sExit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sExport" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sExport.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sImport" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sImport.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sItem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sItem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sLore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sLore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sMap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sMaplink" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sMaplink.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sNewFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sNewFile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sOpen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sOpen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sPassword" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sPassword.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sQuest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sQuest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sRedo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sRedo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sSkill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sSkill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sSkillList" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sSkillList.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sSpawnPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sSpawnPoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sStoryline" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sStoryline.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sUndo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sUndo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sSave" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sSave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sSearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sSearch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sSelectAll" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sSelectAll.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mMap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mMaplink" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mMaplink.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

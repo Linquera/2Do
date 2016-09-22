@@ -17,7 +17,7 @@ namespace TwoDoCustomForm
         private Color ButtonColorEnd { get; set; }
 
         public Color ButtonSymbolColor { get; set; }
-        public Color ButtonHoverCollor { get; set; }
+        public Color ButtonHoverColor { get; set; }
         public int Width { get; set; } 
         public int Height { get; set; }
         public int TopOffset { get; set; }
@@ -42,14 +42,14 @@ namespace TwoDoCustomForm
             ButtonColorStart = Color.FromArgb(69, 121, 0);
             ButtonColorEnd = Color.FromArgb(214, 250, 23);
             ButtonSymbolColor = Color.FromArgb(152, 155, 162);
-            ButtonHoverCollor = Color.FromArgb(242,231,51);
+            ButtonHoverColor = Color.FromArgb(242,231,51);
             Width = 26;
             Height = 26;
             TopOffset = 0;
             LeftOffset = 0;
         }
 
-        public void RenderMenuBarButton(int x, int y, Graphics graphics, GraphicsPath buttonBox)
+        public void RenderMenuBarButton(int x, int y, Graphics graphics)
         {
             Pen pen = new Pen(ButtonSymbolColor);
             Rectangle rcBtn = new Rectangle(x, y, Width, Height);
@@ -57,11 +57,11 @@ namespace TwoDoCustomForm
             //if (Hovering)
             //{
                 //to highligth the hovered button
-                //FillButton(rcBtn, graphics, ButtonColorStart, ButtonColorEnd, buttonBox);
+                //FillButton(rcBtn, graphics, ButtonColorStart, ButtonColorEnd);
             //}
             
             if (Hovering)
-                pen = new Pen(ButtonHoverCollor);
+                pen = new Pen(ButtonHoverColor);
             else
                 pen = new Pen(ButtonSymbolColor);
 
@@ -111,7 +111,7 @@ namespace TwoDoCustomForm
             pen.Dispose();                    
         }
 
-        private void FillButton(Rectangle btn, Graphics graphics, Color clrStart, Color clrEnd, GraphicsPath box)
+        private void FillButton(Rectangle btn, Graphics graphics, Color clrStart, Color clrEnd)
         {
             btn.Height = 3;
             using (LinearGradientBrush lgb = new LinearGradientBrush(btn, clrStart, clrEnd, LinearGradientMode.Vertical))
