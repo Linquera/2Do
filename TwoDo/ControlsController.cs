@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -149,5 +150,42 @@ namespace TwoDo
             MessageBox.Show("Not implemented");
         }
 
+        internal static void AddToolButtons(TwoDoMainForm twoDoMainForm)
+        {
+            twoDoMainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.newFile));
+            twoDoMainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.open));
+            twoDoMainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.save));
+            twoDoMainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.save)); //save all -- find an icon
+            twoDoMainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.undo));
+            twoDoMainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.redo));
+            twoDoMainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.selectAll));
+            twoDoMainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.addchar));
+            twoDoMainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.map));
+            twoDoMainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.maplink));
+            twoDoMainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.addskill));
+            twoDoMainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.list));
+            twoDoMainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.item));
+            twoDoMainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.addlore));
+            twoDoMainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.quest));
+            twoDoMainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.completation));
+        }
+
+        private static Button setButton(string text, Image icon)
+        {
+            var button = new Button();
+            button.Image = icon;
+            button.Text = text;
+            return button;
+        }
+
+        internal static void AddSideButtons(TwoDoMainForm twoDoMainForm)
+        {
+            twoDoMainForm.SideBar.Buttons.Add(setButton("Character", TwoDo.Properties.Resources.addchar));
+            twoDoMainForm.SideBar.Buttons.Add(setButton("Map", TwoDo.Properties.Resources.map));
+            twoDoMainForm.SideBar.Buttons.Add(setButton("Skill", TwoDo.Properties.Resources.addskill));
+            twoDoMainForm.SideBar.Buttons.Add(setButton("Item", TwoDo.Properties.Resources.item));
+            twoDoMainForm.SideBar.Buttons.Add(setButton("Quest", TwoDo.Properties.Resources.quest));
+            twoDoMainForm.SideBar.Buttons.Add(setButton("Lore", TwoDo.Properties.Resources.addlore));   
+        }
     }
 }

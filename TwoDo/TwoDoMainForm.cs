@@ -16,6 +16,9 @@ namespace TwoDo
         {
             InitializeComponent();
             ControlsController.AddMenus(this);
+            ControlsController.AddToolButtons(this);
+            ControlsController.AddSideButtons(this);
+            ShowButtons();
         }
     }
 }
