@@ -4,101 +4,95 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TwoDoCustomForm
 {
     public partial class CustomForm : Form
     {
-        //Windows form control
+        #region Imports
         [DllImport("user32.dll")]
-        private static extern bool ReleaseCapture();
-        [DllImport("user32.dll")]
-        private static extern int SendMessage(IntPtr hWnd,int wMsg,IntPtr wParam, IntPtr lParam);
-        private const int NCLBUTTONDOWN = 0x00A1;
-        private const int WM_SYSCOMMAND = 0x112;
-        private const int HTCAPTION = 2;
-        private const int SC_SIZE = 0xF000;
+        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
 
+        [DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        [DllImport("user32.dll", ExactSpelling = true)]
+        private static extern int SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+
+        private const int GWL_EXSTYLE = -20;
+        private const int WS_EX_CLIENTEDGE = 0x200;
+        private const uint SWP_NOSIZE = 0x0001;
+        private const uint SWP_NOMOVE = 0x0002;
+        private const uint SWP_NOZORDER = 0x0004;
+        private const uint SWP_NOREDRAW = 0x0008;
+        private const uint SWP_NOACTIVATE = 0x0010;
+        private const uint SWP_FRAMECHANGED = 0x0020;
+        private const uint SWP_SHOWWINDOW = 0x0040;
+        private const uint SWP_HIDEWINDOW = 0x0080;
+        private const uint SWP_NOCOPYBITS = 0x0100;
+        private const uint SWP_NOOWNERZORDER = 0x0200;
+        private const uint SWP_NOSENDCHANGING = 0x0400;
+
+        public bool SetBevel(bool show)
+        {
+            foreach (Control c in this.Controls)
+            {
+                MdiClient client = c as MdiClient;
+                if (client != null)
+                {
+                    int windowLong = GetWindowLong(c.Handle, GWL_EXSTYLE);
+
+                    if (show)
+                    {
+                        windowLong |= WS_EX_CLIENTEDGE;
+                    }
+                    else
+                    {
+                        windowLong &= ~WS_EX_CLIENTEDGE;
+                    }
+
+                    SetWindowLong(c.Handle, GWL_EXSTYLE, windowLong);
+
+                    // Update the non-client area.
+                    SetWindowPos(client.Handle, IntPtr.Zero, 0, 0, 0, 0,
+                        SWP_NOACTIVATE | SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER |
+                        SWP_NOOWNERZORDER | SWP_FRAMECHANGED);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        #endregion
+        
         //properties
         public Color BackGroundColor { get; set; }
-        public bool useCustomStatusBar { get; set; }
-        public bool useCustomToolBox { get; set; }
-        public bool useCustomSideBar { get; set; }
+
+        //Containers        
+        protected Rectangle DefaultFormSize = new Rectangle();
+        protected Rectangle ControlButtonsContainer = new Rectangle();
+        protected GraphicsPath MenuButtonsBox = new GraphicsPath();
+
+        public CustomMenuBar MainMenuBar = new CustomMenuBar();
+        private bool onlyCloseButton { get; set; }
 
         //internal use
-        private bool isMouseButtonDown = false;
-        private bool isMaximized = false;
-
-        //Custom Controls
-        public CustomMenuBar MainMenuBar = new CustomMenuBar();
-        public CustomStatusBar StatusBar = new CustomStatusBar();
-        public CustomBorder Border = new CustomBorder();
-        public CustomButtonBar SideBar = new CustomButtonBar();
-        public CustomButtonBar ToolBox = new CustomButtonBar();
-        public CustomMenuStrip CustomMenu;
-
-        public CustomMenuStrip MainMenu { get { return CustomMenu; } }
-
-        //Containers
-        private Rectangle DefaultFormSize = new Rectangle();
-        private Rectangle StatusBarGrip = new Rectangle();
-        private Rectangle ControlButtonsContainer = new Rectangle();
-        private Rectangle MenuContainer = new Rectangle();
-        private Rectangle SideBarContainer = new Rectangle();
-        private Rectangle ToolBoxContainer = new Rectangle();
-        private GraphicsPath MenuButtonsBox = new GraphicsPath();
-
+        protected bool isMouseButtonDown = false;
+        protected bool isMaximized = false;
+        
         public CustomForm()
         {
+            onlyCloseButton = false;
+            SetDefaultValues();                             
+        }
+
+        public CustomForm(bool onlyCloseButton)
+        {
+            this.onlyCloseButton = onlyCloseButton;
             SetDefaultValues();
-            //initial form style
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
-                          ControlStyles.OptimizedDoubleBuffer |
-                          ControlStyles.UserPaint |
-                          ControlStyles.ResizeRedraw |
-                          ControlStyles.SupportsTransparentBackColor,
-                          true);
-
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.MinimumSize = new Size(1200, 800);
-            this.Padding = new Padding(8);
-
-            //Initializing de MenuBar
-            MainMenuBar.MenuButtons.Add(new CustomMenuBarButton(CustomMenuBarButton.MenuBarButtonType.Close));
-            MainMenuBar.MenuButtons.Add(new CustomMenuBarButton(CustomMenuBarButton.MenuBarButtonType.Maximize, Color.FromArgb(124, 13, 2), Color.FromArgb(251, 164, 48)));
-            MainMenuBar.MenuButtons.Add(new CustomMenuBarButton(CustomMenuBarButton.MenuBarButtonType.Minimize, Color.FromArgb(3, 63, 126),Color.FromArgb(119,217, 246)));
-
-            CustomMenu = new CustomMenuStrip(MenuContainer);
-            this.Controls.Add(CustomMenu);            
-        }
-
-        protected void ShowButtons()
-        {
-            foreach (var button in ToolBox.Buttons)
-            {
-                this.Controls.Add(button);
-            }
-
-            foreach (var button in SideBar.Buttons)
-            {
-                this.Controls.Add(button);
-            }
-        }
-
-        private void SetDefaultValues()
-        {
-            //use all custom by default
-            useCustomSideBar = true;
-            useCustomStatusBar = true;
-            useCustomToolBox = true;
-
-            //blacksh like visual studio dark color
-            BackColor = Color.FromArgb(34, 34, 34);
         }
 
         private void InitializeComponent()
@@ -129,11 +123,63 @@ namespace TwoDoCustomForm
             }
         }
 
+        private void SetDefaultValues()
+        {
+            //initial form style
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.OptimizedDoubleBuffer |
+                          ControlStyles.UserPaint |
+                          ControlStyles.ResizeRedraw |
+                          ControlStyles.SupportsTransparentBackColor,
+                          true);  
+            //blacksh like visual studio dark color
+            BackColor = Color.FromArgb(34, 34, 34);
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.MinimumSize = new Size(500, 500);                      
+            
+            //add buttons in the controlbar
+            if (!onlyCloseButton)
+            {
+                MainMenuBar.MenuButtons.Add(new CustomMenuBarButton(CustomMenuBarButton.MenuBarButtonType.Maximize, Color.FromArgb(124, 13, 2), Color.FromArgb(251, 164, 48)));
+                MainMenuBar.MenuButtons.Add(new CustomMenuBarButton(CustomMenuBarButton.MenuBarButtonType.Minimize, Color.FromArgb(3, 63, 126), Color.FromArgb(119, 217, 246)));
+            }  
+        }
+
+        protected override void OnResizeBegin(EventArgs e)
+        {
+            this.Invalidate();
+            base.OnResizeBegin(e);
+        }
+
+        protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
+        {
+            DrawButtonsBox(e.Graphics);
+            // build Menu buttons box:
+            MenuButtonsBox = MainMenuBar.BuildMenuButtonsBox(ControlButtonsContainer);
+        }
+
+        protected void DrawButtonsBox(Graphics graphics)
+        {
+            //variables to control positon of the control buttons on the menu
+            int top = 0;
+            int border = 2;
+            int width = 0;
+            int height = 0;
+            int x = this.ClientRectangle.Right - border - 14;
+            int y = 9;            
+
+            width = onlyCloseButton ? MainMenuBar.MenuButtons[0].Width : MainMenuBar.MenuButtons[0].Width * MainMenuBar.MenuButtons.Count;
+            height = MainMenuBar.MenuButtons[0].Height;
+
+            ControlButtonsContainer = new Rectangle(ClientRectangle.Right - border - width, top, width, height);
+            MainMenuBar.RenderMenuBarButtonsBox(ControlButtonsContainer, graphics, x, y);
+        }
+
         protected override void OnMouseDown(System.Windows.Forms.MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
                 isMouseButtonDown = true;
-           
+
             // Menubar buttons actions                      
             foreach (CustomMenuBarButton btn in MainMenuBar.MenuButtons)
             {
@@ -162,226 +208,25 @@ namespace TwoDoCustomForm
                         }
                         else if (btn.ButtonType == CustomMenuBarButton.MenuBarButtonType.Close)
                         {
-                            Application.Exit();
+                            onExitclick();
                         }
                     }
                 }
             }
         }
 
-        private bool PointInRect(Point p, Rectangle rc)
+        public virtual void onExitclick()
+        {
+            Application.Exit();
+        }
+
+        protected bool PointInRect(Point p, Rectangle rc)
         {
             if ((p.X > rc.Left && p.X < rc.Right &&
                 p.Y > rc.Top && p.Y < rc.Bottom))
                 return true;
             else
                 return false;
-        }
-
-        protected override void OnMouseUp(System.Windows.Forms.MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-                isMouseButtonDown = false;
-        }
-
-        protected override void OnResizeBegin(EventArgs e)
-        {
-            this.Invalidate();
-            base.OnResizeBegin(e);
-        }
-
-        protected override void OnMouseMove(System.Windows.Forms.MouseEventArgs e)
-        {         
-            HoverMenuBarButtons(e.Location);
-            
-            // Form moving
-            DragMenuBar(e);
-            ResizeWindow(e);
-            
-            base.OnMouseMove(e);
-        }
-
-        private void DragMenuBar(MouseEventArgs e)
-        {
-            if (isMouseButtonDown)
-            {
-                if (e.Button == MouseButtons.Left)
-                {
-                    if (PointInRect(e.Location, MenuContainer))
-                    {
-                        ReleaseCapture();
-                        SendMessage(this.Handle, NCLBUTTONDOWN, (IntPtr)HTCAPTION, IntPtr.Zero);
-                    }
-                }
-            }
-        }
-
-        private void ResizeWindow(MouseEventArgs e)
-        {
-            bool bResizing = true;
-            if (PointInRect(e.Location, StatusBarGrip))
-            {
-                Cursor = Cursors.SizeNWSE;
-                if (isMouseButtonDown && bResizing)
-                {
-                    if (e.Button == MouseButtons.Left)
-                    {
-                        if (this.Width < this.MinimumSize.Width)
-                            bResizing = false;
-                        if (this.Height < this.MinimumSize.Height)
-                            bResizing = false;
-
-                        ReleaseCapture();
-                        SendMessage(this.Handle, WM_SYSCOMMAND, (IntPtr)(SC_SIZE + 8), IntPtr.Zero);
-                    }
-                }
-            }
-            else
-            {
-                Cursor = Cursors.Default;
-            }
-        }
-
-        private void HoverMenuBarButtons(Point pos)
-        {
-            bool bChanged = false;
-            if (MenuButtonsBox.IsVisible(pos))
-            {
-                foreach (CustomMenuBarButton btn in MainMenuBar.MenuButtons)
-                {
-                    if (PointInRect(pos, new Rectangle(btn.LeftOffset, btn.TopOffset, btn.Width, btn.Height)))
-                    {
-                        if (!btn.Hovering)
-                        {
-                            btn.Hovering = true;
-                            bChanged = true;
-                        }
-                    }
-                    else
-                    {
-                        if (btn.Hovering)
-                        {
-                            btn.Hovering = false;
-                            bChanged = true;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                foreach (CustomMenuBarButton btn in MainMenuBar.MenuButtons)
-                {
-                    if (btn.Hovering)
-                    {
-                        btn.Hovering = false;
-                        bChanged = true;
-                    }
-                }
-            }
-                        
-            if (bChanged)
-            {
-                Invalidate(ControlButtonsContainer);
-            }
-        }
-
-        protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
-        {
-            Rectangle rcBorder = new Rectangle(0, 0, this.ClientRectangle.Width - 1, this.ClientRectangle.Height - 1);
-
-            // rendering
-            DrawStatusBar(e.Graphics);            
-            Border.Render(rcBorder, e.Graphics);
-            DrawButtonsBox(e.Graphics);
-            DrawMenuBar(e.Graphics);
-            DrawToolBox(e.Graphics);
-            DrawSideBar(e.Graphics);
-
-            // build Menu buttons box:
-            MenuButtonsBox = MainMenuBar.BuildMenuButtonsBox(ControlButtonsContainer);
-        }
-
-        private void DrawToolBox(Graphics graphics)
-        {
-            if (useCustomToolBox)
-            {
-                int sideBarWidth = this.ClientRectangle.Width - 2;
-                int topOffset = MenuContainer.Height + 2;
-                int rectOffset = 1;
-                int sideBarHight = 45;
-
-                ToolBoxContainer = new Rectangle(rectOffset, topOffset, sideBarWidth, sideBarHight);
-                //reder de menu itens
-                ToolBox.ButtonFillWholeBar = true;
-                ToolBox.RenderButtonBar(graphics, ToolBoxContainer);
-            }
-        }
-
-        private void DrawSideBar(Graphics graphics)
-        {
-            if (useCustomSideBar)
-            {
-                int sideBarWidth = 150;
-                int topOffset = MenuContainer.Height + ToolBoxContainer.Height + 2;
-                int rectOffset = 1;
-                int sideBarHight = this.ClientRectangle.Height - //application size
-                                        StatusBar.BarHeight -    //status bar size
-                                        ToolBoxContainer.Height - //toolbox size
-                                        MenuContainer.Height -   //menubar size
-                                        4;                       //some space for the borers dont overlay
-                SideBarContainer = new Rectangle(rectOffset, topOffset, sideBarWidth, sideBarHight);
-                //reder de menu itens
-                SideBar.ButtonFillWholeBar = true;
-                SideBar.RenderButtonBar(graphics, SideBarContainer);
-            }
-        }
-
-        private void DrawMenuBar(Graphics graphics)
-        {            
-            int titleBarWidth = ControlButtonsContainer.Left - 3;
-            int topOffset = 1;
-            int rectOffset = 1;
-            int menuBarHight = 25;
-
-            MenuContainer = new Rectangle(rectOffset, topOffset, titleBarWidth, menuBarHight);
-            //reder de menu itens
-            MainMenuBar.RenderMenuBar(graphics, MenuContainer);            
-        }
-
-        private void DrawStatusBar(Graphics graphics)
-        {
-            if (useCustomStatusBar)
-            {
-                int leftBorderExcess = 2;//this value make the status bar go upa and down on the screen 
-                Rectangle aux = new Rectangle(1, ClientRectangle.Bottom - leftBorderExcess - StatusBar.BarHeight, ClientRectangle.Right - ClientRectangle.Left, StatusBar.BarHeight);
-                StatusBar.RenderStatusBar(graphics, aux.Left, aux.Top, aux.Width, aux.Height);
-                StatusBarGrip = StatusBar.Grip;
-            }
-        }
-
-        private void DrawButtonsBox(Graphics graphics)
-        {
-            //variables to control positon of the control buttons on the menu
-            int top = 0;
-            int btnWidth = 0;
-            int btnHeight = 0;
-            int border = 2;
-            int width = 0;
-            int height = 0;
-            int x = this.ClientRectangle.Right - border - 14;
-            int y = 9;
-
-            foreach (CustomMenuBarButton btn in MainMenuBar.MenuButtons)
-            {
-                btnWidth = btn.Width;
-                btnHeight = btn.Height;
-            }
-
-            width = btnWidth * 3;
-            height = btnHeight;
-
-            ControlButtonsContainer = new Rectangle(ClientRectangle.Right - border - width, top, width, height);
-            MainMenuBar.RenderMenuBarButtonsBox(ControlButtonsContainer, graphics, x, y);
         }
     }
 }

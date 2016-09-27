@@ -80,9 +80,37 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TwoDoCharacter\TwoDoCharacter.csproj">
+      <Project>{255630c1-d73e-409b-b4a6-9aae703eba9a}</Project>
+      <Name>TwoDoCharacter</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TwoDoCustomForm\TwoDoCustomForm.csproj">
       <Project>{127f0891-6c14-4e88-abea-29580414b59c}</Project>
       <Name>TwoDoCustomForm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwoDoInterfaces\TwoDoInterfaces.csproj">
+      <Project>{7a8c69db-8d4b-4548-9405-b7081195d4fd}</Project>
+      <Name>TwoDoInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwoDoItem\TwoDoItem.csproj">
+      <Project>{042c9cd1-ca3d-4784-85f4-19b7d03a8c02}</Project>
+      <Name>TwoDoItem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwoDoLore\TwoDoLore.csproj">
+      <Project>{9380351a-0402-4c1e-a561-e0ee6f392e5b}</Project>
+      <Name>TwoDoLore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwoDoMap\TwoDoMap.csproj">
+      <Project>{a006fe09-4020-4917-ad27-22270ceaba52}</Project>
+      <Name>TwoDoMap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwoDoQuest\TwoDoQuest.csproj">
+      <Project>{f335e69a-18ba-42e6-9c72-88473ce1f073}</Project>
+      <Name>TwoDoQuest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwoDoSkill\TwoDoSkill.csproj">
+      <Project>{c781fa6c-e159-42c4-baa8-25cc10b86173}</Project>
+      <Name>TwoDoSkill</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -17,11 +17,13 @@ namespace TwoDoCustomForm
 
         public Color ButtonBoxInnerBorder { get; set; }
         public Color ButtonBoxOuterBorder { get; set; }
+        public bool onlyCloseButton { get; set; }
         
         public CustomMenuBar()
         {
             MenuButtonsColorMix = new List<Color>();
-            setDefaultCustomColors();              
+            setDefaultCustomColors();
+            MenuButtons.Add(new CustomMenuBarButton(CustomMenuBarButton.MenuBarButtonType.Close));
         }
 
         private void setDefaultCustomColors()
@@ -36,7 +38,7 @@ namespace TwoDoCustomForm
             // Default buttonBox border colors:
             ButtonBoxInnerBorder = Color.FromArgb(29, 8, 5);
             ButtonBoxOuterBorder = Color.FromArgb(60, 65, 68);
-        }
+        }       
 
         public List<CustomMenuBarButton> MenuButtons
         {
@@ -44,16 +46,12 @@ namespace TwoDoCustomForm
         }
 
         public void RenderMenuBarButtonsBox(Rectangle rcBox, Graphics graphics, int singlePosX, int singlePosY)
-        {
+        {                     
+
             using (AntiAlias aa = new AntiAlias(graphics))
             {
-                int btnWidth = 0;
-                int btnHeight = 0;
-                foreach (CustomMenuBarButton btn in MenuButtons)
-                {
-                    btnWidth = btn.Width;
-                    btnHeight = btn.Height;    
-                }
+                int btnWidth = MenuButtons[0].Width;
+                int btnHeight = MenuButtons[0].Height;
                 int _x = rcBox.Right - btnWidth;
                 int _y = rcBox.Bottom - btnHeight;
 
@@ -64,12 +62,15 @@ namespace TwoDoCustomForm
                         lgb.InterpolationColors = CustomUtils.ColorMix(MenuButtonsColorMix, false);
                         graphics.FillPath(lgb, buttonBox);
                     }
-
+                    
                     // Draw separators
-                    graphics.DrawLine(new Pen(ButtonBoxOuterBorder), rcBox.Right - btnWidth, rcBox.Bottom, rcBox.Right - btnWidth, rcBox.Top + 1);
-                    graphics.DrawLine(new Pen(ButtonBoxInnerBorder), rcBox.Right - btnWidth - 1, rcBox.Bottom, rcBox.Right - btnWidth - 1, rcBox.Top + 1);
-                    graphics.DrawLine(new Pen(ButtonBoxOuterBorder), rcBox.Right - btnWidth * 2, rcBox.Bottom - 2, rcBox.Right - btnWidth * 2, rcBox.Top + 1);
-                    graphics.DrawLine(new Pen(ButtonBoxInnerBorder), rcBox.Right - btnWidth * 2 - 1, rcBox.Bottom - 2, rcBox.Right - btnWidth * 2 - 1, rcBox.Top + 1);
+                    int count = 1;
+                    foreach (var button in MenuButtons)
+                    {
+                        graphics.DrawLine(new Pen(ButtonBoxOuterBorder), rcBox.Right - btnWidth * count, rcBox.Bottom, rcBox.Right - btnWidth * count, rcBox.Top + 1);
+                        graphics.DrawLine(new Pen(ButtonBoxInnerBorder), rcBox.Right - btnWidth * count - 1, rcBox.Bottom, rcBox.Right - btnWidth * count - 1, rcBox.Top + 1);
+                        count++;
+                    }
 
                     // Render buttons
                     graphics.SetClip(buttonBox);
@@ -93,7 +94,7 @@ namespace TwoDoCustomForm
             buttonBox.AddLine(rec.Left, rec.Top, rec.Left, rec.Bottom);
             buttonBox.AddLine(rec.Left, rec.Top, rec.Right - rec.Height, rec.Top);
             buttonBox.AddLine(rec.Right, rec.Top, rec.Right, rec.Bottom);
-            buttonBox.AddLine(rec.Right - rec.Height, rec.Bottom, rec.Left, rec.Bottom);
+            buttonBox.AddLine(rec.Right - rec.Height, rec.Bottom, rec.Left, rec.Bottom);            
             return buttonBox;
         }
 

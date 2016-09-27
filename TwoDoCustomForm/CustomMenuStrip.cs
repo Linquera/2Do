@@ -12,14 +12,15 @@ namespace TwoDoCustomForm
     {
         public CustomMenuStrip()
         {
-            this.Renderer = new CustomRenderer();            
-        }
-
-        public CustomMenuStrip(Rectangle container) : this()
-        {
+            this.Renderer = new CustomRenderer();
             this.Dock = DockStyle.None;
-            this.SetBounds(container.X - 4, container.Y + 2, container.Width, container.Height);
+            this.Anchor = AnchorStyles.None;
             this.BackColor = Color.Transparent;
+        }
+              
+        public void setLocation(Rectangle container)
+        {
+            this.Location = new Point(container.X - 4, container.Y + 2);
         }
 
         private class CustomRenderer : ToolStripProfessionalRenderer

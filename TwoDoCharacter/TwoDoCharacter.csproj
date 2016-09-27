@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{127F0891-6C14-4E88-ABEA-29580414B59C}</ProjectGuid>
+    <ProjectGuid>{255630C1-D73E-409B-B4A6-9AAE703EBA9A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TwoDoCustomForm</RootNamespace>
-    <AssemblyName>TwoDoCustomForm</AssemblyName>
+    <RootNamespace>TwoDoCharacter</RootNamespace>
+    <AssemblyName>TwoDoCharacter</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\bin\</OutputPath>
+    <OutputPath>..\Bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -41,34 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AntiAlias.cs" />
-    <Compile Include="CustomBar.cs" />
-    <Compile Include="CustomBarItem.cs" />
-    <Compile Include="CustomBorder.cs" />
-    <Compile Include="CustomForm.cs">
+    <Compile Include="CharacterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomGrip.cs" />
-    <Compile Include="CustomMainForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="CharacterForm.Designer.cs">
+      <DependentUpon>CharacterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomMenuBar.cs" />
-    <Compile Include="CustomMenuStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="CustomButtonBar.cs" />
-    <Compile Include="CustomStatusBar.cs" />
-    <Compile Include="CustomMenuBarButton.cs" />
-    <Compile Include="CustomUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CustomForm.resx">
-      <DependentUpon>CustomForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CustomMainForm.resx">
-      <DependentUpon>CustomMainForm.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\TwoDoCustomForm\TwoDoCustomForm.csproj">
+      <Project>{127f0891-6c14-4e88-abea-29580414b59c}</Project>
+      <Name>TwoDoCustomForm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwoDoInterfaces\TwoDoInterfaces.csproj">
+      <Project>{7a8c69db-8d4b-4548-9405-b7081195d4fd}</Project>
+      <Name>TwoDoInterfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
