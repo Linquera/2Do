@@ -15,7 +15,7 @@ namespace TwoDoLore
     public partial class LoreForm : CustomForm, ITwoDoMdiForm
     {
         public event EventHandler MdiExitClick;
-        public LoreForm(bool onlyCloseButton) : base(onlyCloseButton)
+        public LoreForm(bool onlyCloseButton) : base(onlyCloseButton, false)
         {
             InitializeComponent();
         }
@@ -32,7 +32,7 @@ namespace TwoDoLore
             var handler = MdiExitClick;
             if (handler != null)
             {
-                handler(this, new LoreEvents());
+                handler(this, new LoreEvents(getMdiFormType()));
             }
         }
 
@@ -42,11 +42,12 @@ namespace TwoDoLore
         }
     }
 
-    public class LoreEvents : EventArgs, ICustomEventArgs
+    public class LoreEvents : EventArgs, IMdiEventArgs
     {
-        public MdiFormType getMdiFormType()
+        public MdiFormType FormType { get; set; }
+        public LoreEvents(MdiFormType formType)
         {
-            return MdiFormType.Lore;
+            FormType = formType;
         }
     }
 }

@@ -112,6 +112,10 @@
       <Project>{c781fa6c-e159-42c4-baa8-25cc10b86173}</Project>
       <Name>TwoDoSkill</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TwoDoUtils\TwoDoUtils.csproj">
+      <Project>{0bbb21e7-503a-4b4c-b619-300637f9be5b}</Project>
+      <Name>TwoDoUtils</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\mAnimation.png" />

@@ -15,7 +15,7 @@ namespace TwoDoMap
     public partial class MapForm : CustomForm, ITwoDoMdiForm
     {
         public event EventHandler MdiExitClick;
-        public MapForm(bool onlyCloseButton) : base(onlyCloseButton)
+        public MapForm(bool onlyCloseButton) : base(onlyCloseButton, false)
         {
             InitializeComponent();
         }
@@ -32,7 +32,7 @@ namespace TwoDoMap
             var handler = MdiExitClick;
             if (handler != null)
             {
-                handler(this, new MapEvents());
+                handler(this, new MapEvents(getMdiFormType()));
             }
         }
 
@@ -42,11 +42,12 @@ namespace TwoDoMap
         }
     }
 
-    public class MapEvents : EventArgs, ICustomEventArgs
+    public class MapEvents : EventArgs, IMdiEventArgs
     {
-        public MdiFormType getMdiFormType()
+        public MdiFormType FormType { get; set; }
+        public MapEvents(MdiFormType formType)
         {
-            return MdiFormType.Map;
+            FormType = formType;
         }
     }
 }

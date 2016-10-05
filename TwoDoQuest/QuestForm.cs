@@ -15,7 +15,7 @@ namespace TwoDoQuest
     public partial class QuestForm : CustomForm, ITwoDoMdiForm
     {
         public event EventHandler MdiExitClick;
-        public QuestForm(bool onlyCloseButton) : base(onlyCloseButton)
+        public QuestForm(bool onlyCloseButton) : base(onlyCloseButton, false)
         {
             InitializeComponent();
         }
@@ -32,7 +32,7 @@ namespace TwoDoQuest
             var handler = MdiExitClick;
             if (handler != null)
             {
-                handler(this, new QuestEvents());
+                handler(this, new QuestEvents(getMdiFormType()));
             }
         }
 
@@ -42,11 +42,12 @@ namespace TwoDoQuest
         }
     }
 
-    public class QuestEvents : EventArgs, ICustomEventArgs
+    public class QuestEvents : EventArgs, IMdiEventArgs
     {
-        public MdiFormType getMdiFormType()
+        public MdiFormType FormType { get; set; }
+        public QuestEvents(MdiFormType formType)
         {
-            return MdiFormType.Quest;
+            FormType = formType;
         }
     }
 }

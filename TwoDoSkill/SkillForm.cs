@@ -15,7 +15,7 @@ namespace TwoDoSkill
     public partial class SkillForm : CustomForm, ITwoDoMdiForm
     {
         public event EventHandler MdiExitClick;
-        public SkillForm(bool onlyCloseButton) : base(onlyCloseButton)
+        public SkillForm(bool onlyCloseButton) : base(onlyCloseButton, false)
         {
             InitializeComponent();
         }
@@ -32,7 +32,7 @@ namespace TwoDoSkill
             var handler = MdiExitClick;
             if (handler != null)
             {
-                handler(this, new SkillEvents());
+                handler(this, new SkillEvents(MdiFormType.Skill));
             }
         }
 
@@ -42,11 +42,13 @@ namespace TwoDoSkill
         }
     }
 
-    public class SkillEvents : EventArgs, ICustomEventArgs
+    public class SkillEvents : EventArgs, IMdiEventArgs
     {
-        public MdiFormType getMdiFormType()
+        public MdiFormType FormType { get; set; }
+
+        public SkillEvents(MdiFormType formType)
         {
-            return MdiFormType.Skill;
+            FormType = formType;
         }
     }
 }

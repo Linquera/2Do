@@ -15,7 +15,7 @@ namespace TwoDoItem
     public partial class ItemForm : CustomForm, ITwoDoMdiForm
     {
         public event EventHandler MdiExitClick;
-        public ItemForm(bool onlyCloseButton) : base(onlyCloseButton)
+        public ItemForm(bool onlyCloseButton) : base(onlyCloseButton, false)
         {
             InitializeComponent();
         }
@@ -32,7 +32,7 @@ namespace TwoDoItem
             var handler = MdiExitClick;
             if (handler != null)
             {
-                handler(this, new itemEvents());
+                handler(this, new ItemEvents(getMdiFormType()));
             }
         }
 
@@ -42,11 +42,12 @@ namespace TwoDoItem
         }
     }
 
-    public class itemEvents : EventArgs, ICustomEventArgs
+    public class ItemEvents : EventArgs, IMdiEventArgs
     {
-        public MdiFormType getMdiFormType()
+        public MdiFormType FormType { get; set; }
+        public ItemEvents(MdiFormType formType)
         {
-            return MdiFormType.Items;
+            FormType = formType;
         }
     }
 }

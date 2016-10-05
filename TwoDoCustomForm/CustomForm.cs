@@ -21,6 +21,16 @@ namespace TwoDoCustomForm
 
         [DllImport("user32.dll", ExactSpelling = true)]
         private static extern int SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+       
+        [DllImport("user32.dll")]
+        private static extern bool ReleaseCapture();
+        [DllImport("user32.dll")]
+        private static extern int SendMessage(IntPtr hWnd, int wMsg, IntPtr wParam, IntPtr lParam);
+
+        private const int NCLBUTTONDOWN = 0x00A1;
+        private const int WM_SYSCOMMAND = 0x112;
+        private const int HTCAPTION = 2;
+        private const int SC_SIZE = 0xF000;
 
         private const int GWL_EXSTYLE = -20;
         private const int WS_EX_CLIENTEDGE = 0x200;
@@ -74,24 +84,30 @@ namespace TwoDoCustomForm
         //Containers        
         protected Rectangle DefaultFormSize = new Rectangle();
         protected Rectangle ControlButtonsContainer = new Rectangle();
+        protected Rectangle MenuContainer = new Rectangle();   
         protected GraphicsPath MenuButtonsBox = new GraphicsPath();
-
+        
         public CustomMenuBar MainMenuBar = new CustomMenuBar();
-        private bool onlyCloseButton { get; set; }
+        private bool OnlyCloseButton { get; set; }
+        private bool AllowedToMove { get; set; }
+        private Font font = new Font("Visitor TT2 BRK", 9);     
 
         //internal use
         protected bool isMouseButtonDown = false;
         protected bool isMaximized = false;
-        
+        protected string menuTitle = "";
+
         public CustomForm()
         {
-            onlyCloseButton = false;
+            AllowedToMove = true;
+            OnlyCloseButton = false;
             SetDefaultValues();                             
         }
 
-        public CustomForm(bool onlyCloseButton)
+        public CustomForm(bool onlyCloseButton, bool allowedToMove)
         {
-            this.onlyCloseButton = onlyCloseButton;
+            this.AllowedToMove = allowedToMove;
+            this.OnlyCloseButton = onlyCloseButton;
             SetDefaultValues();
         }
 
@@ -138,7 +154,7 @@ namespace TwoDoCustomForm
             this.MinimumSize = new Size(500, 500);                      
             
             //add buttons in the controlbar
-            if (!onlyCloseButton)
+            if (!OnlyCloseButton)
             {
                 MainMenuBar.MenuButtons.Add(new CustomMenuBarButton(CustomMenuBarButton.MenuBarButtonType.Maximize, Color.FromArgb(124, 13, 2), Color.FromArgb(251, 164, 48)));
                 MainMenuBar.MenuButtons.Add(new CustomMenuBarButton(CustomMenuBarButton.MenuBarButtonType.Minimize, Color.FromArgb(3, 63, 126), Color.FromArgb(119, 217, 246)));
@@ -154,6 +170,9 @@ namespace TwoDoCustomForm
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
         {
             DrawButtonsBox(e.Graphics);
+            DrawMenuBar(e.Graphics);
+            if (!string.IsNullOrEmpty(menuTitle)) 
+                DrawTitleBarText(e.Graphics, menuTitle, MenuContainer);
             // build Menu buttons box:
             MenuButtonsBox = MainMenuBar.BuildMenuButtonsBox(ControlButtonsContainer);
         }
@@ -168,7 +187,7 @@ namespace TwoDoCustomForm
             int x = this.ClientRectangle.Right - border - 14;
             int y = 9;            
 
-            width = onlyCloseButton ? MainMenuBar.MenuButtons[0].Width : MainMenuBar.MenuButtons[0].Width * MainMenuBar.MenuButtons.Count;
+            width = OnlyCloseButton ? MainMenuBar.MenuButtons[0].Width : MainMenuBar.MenuButtons[0].Width * MainMenuBar.MenuButtons.Count;
             height = MainMenuBar.MenuButtons[0].Height;
 
             ControlButtonsContainer = new Rectangle(ClientRectangle.Right - border - width, top, width, height);
@@ -215,6 +234,46 @@ namespace TwoDoCustomForm
             }
         }
 
+        private void DrawMenuBar(Graphics graphics)
+        {
+            int titleBarWidth = ControlButtonsContainer.Left - 3;
+            int topOffset = 1;
+            int rectOffset = 1;
+            int menuBarHight = 25;
+
+            MenuContainer = new Rectangle(rectOffset, topOffset, titleBarWidth, menuBarHight);
+            //reder de menu itens
+            MainMenuBar.RenderMenuBar(graphics, MenuContainer);
+        }
+
+        private void DrawTitleBarText(Graphics graphicsg, string text, Rectangle rc)
+        {
+            StringFormat sf = new StringFormat();
+            sf.Alignment = StringAlignment.Center;
+            sf.LineAlignment = StringAlignment.Center;
+            sf.Trimming = StringTrimming.EllipsisCharacter;
+
+            SolidBrush sb = new SolidBrush(Color.White);
+            graphicsg.DrawString(text, font, sb, rc, sf);
+            sb.Dispose();
+            sf.Dispose();
+        }
+
+        private void DragMenuBar(MouseEventArgs e)
+        {
+            if (isMouseButtonDown)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    if (PointInRect(e.Location, MenuContainer))
+                    {
+                        ReleaseCapture();
+                        SendMessage(this.Handle, NCLBUTTONDOWN, (IntPtr)HTCAPTION, IntPtr.Zero);
+                    }
+                }
+            }
+        }
+
         public virtual void onExitclick()
         {
             Application.Exit();
@@ -227,6 +286,78 @@ namespace TwoDoCustomForm
                 return true;
             else
                 return false;
+        }
+
+        protected override void OnMouseUp(System.Windows.Forms.MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                isMouseButtonDown = false;
+        }
+
+        protected override void OnMouseMove(System.Windows.Forms.MouseEventArgs e)
+        {
+            HoverMenuBarButtons(e.Location);
+            // Form moving
+            if(AllowedToMove) DragMenuBar(e);
+            base.OnMouseMove(e);
+        }
+
+        public void ReleaseResize()
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_SYSCOMMAND, (IntPtr)(SC_SIZE + 8), IntPtr.Zero);
+        }
+
+        private void HoverMenuBarButtons(Point pos)
+        {
+            bool bChanged = false;
+            if (MenuButtonsBox.IsVisible(pos))
+            {
+                foreach (CustomMenuBarButton btn in MainMenuBar.MenuButtons)
+                {
+                    if (PointInRect(pos, new Rectangle(btn.LeftOffset, btn.TopOffset, btn.Width, btn.Height)))
+                    {
+                        if (!btn.Hovering)
+                        {
+                            btn.Hovering = true;
+                            bChanged = true;
+                        }
+                    }
+                    else
+                    {
+                        if (btn.Hovering)
+                        {
+                            btn.Hovering = false;
+                            bChanged = true;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach (CustomMenuBarButton btn in MainMenuBar.MenuButtons)
+                {
+                    if (btn.Hovering)
+                    {
+                        btn.Hovering = false;
+                        bChanged = true;
+                    }
+                }
+            }
+
+            if (bChanged)
+            {
+                Invalidate(ControlButtonsContainer);
+            }
+        }
+
+        protected void NumebersOnly(object sender, KeyPressEventArgs e)
+        {
+            // Check if the pressed character was a backspace or numeric.
+            if (e.KeyChar != (char)8 && !char.IsNumber(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

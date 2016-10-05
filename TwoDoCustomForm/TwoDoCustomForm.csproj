@@ -48,6 +48,9 @@
     <Compile Include="CustomForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CustomGridPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CustomGrip.cs" />
     <Compile Include="CustomMainForm.cs">
       <SubType>Form</SubType>
@@ -69,6 +72,12 @@
     <EmbeddedResource Include="CustomMainForm.resx">
       <DependentUpon>CustomMainForm.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TwoDoInterfaces\TwoDoInterfaces.csproj">
+      <Project>{7a8c69db-8d4b-4548-9405-b7081195d4fd}</Project>
+      <Name>TwoDoInterfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

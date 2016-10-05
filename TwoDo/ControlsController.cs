@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using TwoDoCharacter;
 using TwoDoInterfaces;
 using TwoDoItem;
@@ -12,12 +13,19 @@ using TwoDoLore;
 using TwoDoMap;
 using TwoDoQuest;
 using TwoDoSkill;
+using TwoDoUtils;
 
 namespace TwoDo
 {
     public class ControlsController
     {
         private TwoDoMainForm mainForm;
+        private XmlNode CharacterNode;
+        private XmlNode MapNode;
+        private XmlNode SkillNode;
+        private XmlNode ItemNode;
+        private XmlNode QuestNode;
+        private XmlNode LoreNode;
 
         public ControlsController(TwoDoMainForm form)
         {
@@ -171,8 +179,8 @@ namespace TwoDo
         internal void AddToolButtons()
         {
             mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mNewFile, notImplemented_Click));
-            mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mOpen, notImplemented_Click));
-            mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mSave, notImplemented_Click));
+            mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mOpen, Load_Click));
+            mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mSave, save_Click));
             mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mSave, notImplemented_Click)); //save all -- find an icon
             mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mUndo, notImplemented_Click));
             mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mRedo, notImplemented_Click));
@@ -186,6 +194,43 @@ namespace TwoDo
             mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mLore, notImplemented_Click));
             mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mQuest, notImplemented_Click));
             mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mCompletation, notImplemented_Click));
+        }
+
+        private void Load_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.InitialDirectory = "c:\\"; //save last open position
+            op.Filter = "2Do files (*.2Do)|*.2Do";            ;
+            op.RestoreDirectory = true;
+            if(op.ShowDialog() == DialogResult.OK)
+            {                
+                string file = op.FileName;
+                try
+                {
+                    XmlDocument xml = new XmlDocument();
+                    xml.LoadXml(System.IO.File.ReadAllText(file));
+                    var node = xml.DocumentElement.SelectSingleNode("//TwoDo");
+                    CharacterNode = node.SelectSingleNode("CharacterForm");
+                    MapNode = node.SelectSingleNode("MapForm");
+                    SkillNode = node.SelectSingleNode("SkillForm");
+                    ItemNode = node.SelectSingleNode("ItemForm");
+                    QuestNode = node.SelectSingleNode("QuestForm");
+                    LoreNode = node.SelectSingleNode("LoreForm");                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Could not read file: " + ex.Message);
+                }
+            }
+        }
+
+        private void save_Click(object sender, EventArgs e)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.AddRootElement("TwoDo");
+            xml.AddXmlNode("TwoDo", mainForm.CharForm.ToXml());
+
+            System.IO.File.WriteAllText(@"C:\save.2do", xml.OuterXml);
         }
 
         private Button setButton(string text, Image icon, EventHandler e)
@@ -212,10 +257,8 @@ namespace TwoDo
             if (mainForm.CharForm == null)
             {
                 mainForm.CharForm = new CharacterForm(true);
-                mainForm.CharForm.MdiParent = mainForm;
-                mainForm.CharForm.Dock = DockStyle.Fill; 
-                mainForm.CharForm.MdiExitClick += CloseMdiForm;
-                mainForm.CharForm.Show();
+                if (CharacterNode != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }                    
+                OpenMdiForm(mainForm.CharForm);
             }
             else if (!mainForm.CharForm.Focused)
             {
@@ -228,10 +271,7 @@ namespace TwoDo
             if (mainForm.MapForm == null)
             {
                 mainForm.MapForm = new MapForm(true);
-                mainForm.MapForm.MdiParent = mainForm;
-                mainForm.MapForm.Dock = DockStyle.Fill;
-                mainForm.MapForm.MdiExitClick += CloseMdiForm;
-                mainForm.MapForm.Show();
+                OpenMdiForm(mainForm.MapForm);
             }
             else if (!mainForm.MapForm.Focused)
             {
@@ -244,10 +284,7 @@ namespace TwoDo
             if (mainForm.SkillForm == null)
             {
                 mainForm.SkillForm = new SkillForm(true);
-                mainForm.SkillForm.MdiParent = mainForm;
-                mainForm.SkillForm.Dock = DockStyle.Fill;
-                mainForm.SkillForm.MdiExitClick += CloseMdiForm;
-                mainForm.SkillForm.Show();
+                OpenMdiForm(mainForm.SkillForm);
             }
             else if (!mainForm.SkillForm.Focused)
             {
@@ -260,10 +297,7 @@ namespace TwoDo
             if (mainForm.ItemForm == null)
             {
                 mainForm.ItemForm = new ItemForm(true);
-                mainForm.ItemForm.MdiParent = mainForm;
-                mainForm.ItemForm.Dock = DockStyle.Fill;
-                mainForm.ItemForm.MdiExitClick += CloseMdiForm;
-                mainForm.ItemForm.Show();
+                OpenMdiForm(mainForm.ItemForm);
             }
             else if (!mainForm.ItemForm.Focused)
             {
@@ -276,10 +310,7 @@ namespace TwoDo
             if (mainForm.QuestForm == null)
             {
                 mainForm.QuestForm = new QuestForm(true);
-                mainForm.QuestForm.MdiParent = mainForm;
-                mainForm.QuestForm.Dock = DockStyle.Fill;
-                mainForm.QuestForm.MdiExitClick += CloseMdiForm;
-                mainForm.QuestForm.Show();
+                OpenMdiForm(mainForm.QuestForm);
             }
             else if (!mainForm.QuestForm.Focused)
             {
@@ -292,10 +323,8 @@ namespace TwoDo
             if (mainForm.LoreForm == null)
             {
                 mainForm.LoreForm = new LoreForm(true);
-                mainForm.LoreForm.MdiParent = mainForm;
-                mainForm.LoreForm.Dock = DockStyle.Fill;
-                mainForm.LoreForm.MdiExitClick += CloseMdiForm;
-                mainForm.LoreForm.Show();
+                OpenMdiForm(mainForm.LoreForm);
+                
             }
             else if (!mainForm.LoreForm.Focused)
             {
@@ -303,9 +332,17 @@ namespace TwoDo
             }
         }
 
+        private void OpenMdiForm(Form form)
+        {
+            form.MdiParent = mainForm;
+            form.Dock = DockStyle.Fill;
+            (form as ITwoDoMdiForm).MdiExitClick += CloseMdiForm;
+            form.Show();
+        }
+
         private void CloseMdiForm(object sender, EventArgs e)
         {
-            switch ((e as ICustomEventArgs).getMdiFormType())
+            switch ((e as IMdiEventArgs).FormType)
             {
                 case MdiFormType.Character: mainForm.CharForm = null; break;
                 case MdiFormType.Map: mainForm.MapForm = null; break;
@@ -313,8 +350,7 @@ namespace TwoDo
                 case MdiFormType.Items: mainForm.ItemForm = null; break;
                 case MdiFormType.Quest: mainForm.QuestForm = null; break;
                 case MdiFormType.Lore: mainForm.LoreForm = null; break;
-            }
-               
+            }               
         }
     }
 }
