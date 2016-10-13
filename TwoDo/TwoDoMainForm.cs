@@ -25,11 +25,35 @@ namespace TwoDo
         public ItemForm ItemForm = null;
         public QuestForm QuestForm = null;
         public LoreForm LoreForm = null;
+        public ProjectSave ProjectSave = null;
 
         public TwoDoMainForm()
         {
             InitializeComponent();
-            controller = new ControlsController(this);            
+            controller = new ControlsController(this);
+                        
+            if (!this.isMaximized)
+            {
+                this.ToogleMaxMinSize();
+            }
+        }
+
+        public override void onExitclick()
+        {
+            if (controller.PendingSave)
+            {
+                switch(MessageBox.Show("Unsaved information will be lost?", "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information))
+                {
+                    case DialogResult.Yes:
+                        controller.Save();
+                        break;
+                    case DialogResult.No:
+                        Application.Exit();
+                    break;
+                }
+            }
+            else
+                Application.Exit();
         }
     }
 }

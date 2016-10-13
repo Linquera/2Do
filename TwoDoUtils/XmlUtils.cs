@@ -40,6 +40,23 @@ namespace TwoDoUtils
                 throw new XmlUtilsException("This instance does not have a root element");
             }
         }
+
+        public static void AddNode(this XmlDocument value, string node)
+        {
+            if (value.ChildNodes.Count > 0)
+            {
+                XmlNode Node = value.SelectSingleNode(node);
+                if (Node == null)
+                {
+                    Node = value.CreateElement(node);
+                }
+                value.FirstChild.AppendChild(Node);
+            }
+            else
+            {
+                throw new XmlUtilsException("This instance does not have a root element");
+            }
+        }
         
         public static void AddNode(this XmlDocument value, XmlNode node)
         {
@@ -77,7 +94,7 @@ namespace TwoDoUtils
             value.InnerXml += XmlValue;            
         }
 
-    }
+    }    
 
     public class XmlUtilsException: Exception
     {

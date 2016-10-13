@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using TwoDoCharacter;
+using TwoDoCustomForm;
 using TwoDoInterfaces;
 using TwoDoItem;
 using TwoDoLore;
@@ -20,13 +23,21 @@ namespace TwoDo
     public class ControlsController
     {
         private TwoDoMainForm mainForm;
-        private XmlNode CharacterNode;
-        private XmlNode MapNode;
-        private XmlNode SkillNode;
-        private XmlNode ItemNode;
-        private XmlNode QuestNode;
-        private XmlNode LoreNode;
+        private XmlNode characterNode;
+        private XmlNode mapNode;
+        private XmlNode skillNode;
+        private XmlNode itemNode;
+        private XmlNode questNode;
+        private XmlNode loreNode;
 
+        public XmlNode CharacterNode { get { return characterNode; } set { characterNode = value; PendingSave = true; } }
+        public XmlNode MapNode { get { return mapNode; } set { mapNode = value; PendingSave = true; } }
+        public XmlNode SkillNode { get { return skillNode; } set { skillNode = value; PendingSave = true; } }
+        public XmlNode ItemNode { get { return itemNode; } set { itemNode = value; PendingSave = true; } }
+        public XmlNode QuestNode { get { return questNode; } set { questNode = value; PendingSave = true; } }
+        public XmlNode LoreNode { get { return loreNode; } set { loreNode = value; PendingSave = true; } }
+        public bool PendingSave = false;
+        
         public ControlsController(TwoDoMainForm form)
         {
             mainForm = form;
@@ -185,7 +196,7 @@ namespace TwoDo
             mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mUndo, notImplemented_Click));
             mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mRedo, notImplemented_Click));
             mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mSelectAll, notImplemented_Click));
-            mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mCharacter, notImplemented_Click));
+            mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mCharacter, NewCharacter_Click));
             mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mMap, notImplemented_Click));
             mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mMaplink, notImplemented_Click));
             mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mSkill, notImplemented_Click));
@@ -194,28 +205,38 @@ namespace TwoDo
             mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mLore, notImplemented_Click));
             mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mQuest, notImplemented_Click));
             mainForm.ToolBox.Buttons.Add(setButton("", TwoDo.Properties.Resources.mCompletation, notImplemented_Click));
-        }
+        }        
 
         private void Load_Click(object sender, EventArgs e)
         {
+            if (PendingSave)
+            {
+                if(MessageBox.Show("Unsaved information will be lost! Continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+            mainForm.ProjectSave = new ProjectSave();
             OpenFileDialog op = new OpenFileDialog();
             op.InitialDirectory = "c:\\"; //save last open position
-            op.Filter = "2Do files (*.2Do)|*.2Do";            ;
+            op.Filter = "2Do files (*.2Do)|*.2Do";            
             op.RestoreDirectory = true;
             if(op.ShowDialog() == DialogResult.OK)
             {                
-                string file = op.FileName;
                 try
                 {
                     XmlDocument xml = new XmlDocument();
-                    xml.LoadXml(System.IO.File.ReadAllText(file));
+                    xml.LoadXml(Base64Decode((string)ConvertByteArrayToObject(File.ReadAllBytes(op.FileName))));
                     var node = xml.DocumentElement.SelectSingleNode("//TwoDo");
+                    mainForm.ProjectSave.LoadFromXml(node.SelectSingleNode("ProjectSave").OuterXml);
                     CharacterNode = node.SelectSingleNode("CharacterForm");
                     MapNode = node.SelectSingleNode("MapForm");
                     SkillNode = node.SelectSingleNode("SkillForm");
                     ItemNode = node.SelectSingleNode("ItemForm");
                     QuestNode = node.SelectSingleNode("QuestForm");
-                    LoreNode = node.SelectSingleNode("LoreForm");                    
+                    LoreNode = node.SelectSingleNode("LoreForm");
+
+                    ReloadOpenForms();
                 }
                 catch (Exception ex)
                 {
@@ -224,13 +245,43 @@ namespace TwoDo
             }
         }
 
+        private void ReloadOpenForms()
+        {
+            if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
+            /*if (mainForm.MapForm != null)  { mainForm.MapForm.LoadFromXml(CharacterNode.InnerXml); }
+            if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
+            if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
+            if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
+            if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
+            if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }*/
+        }
+
         private void save_Click(object sender, EventArgs e)
         {
+            Save();
+        }
+
+        public void Save()
+        {
+            if (mainForm.ProjectSave == null)
+            {
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.Filter = "2Do files (*.2Do)|*.2Do";
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    mainForm.ProjectSave = new ProjectSave();
+                    mainForm.ProjectSave.Name = dialog.FileName;                    
+                }
+                else
+                    return;
+            }
+
             XmlDocument xml = new XmlDocument();
             xml.AddRootElement("TwoDo");
+            xml.AddXmlNode("TwoDo", mainForm.ProjectSave.ToXml());
             xml.AddXmlNode("TwoDo", mainForm.CharForm.ToXml());
 
-            System.IO.File.WriteAllText(@"C:\save.2do", xml.OuterXml);
+            File.WriteAllBytes(mainForm.ProjectSave.Name, ConvertObjectToByteArray(Base64Encode(xml.OuterXml)));
         }
 
         private Button setButton(string text, Image icon, EventHandler e)
@@ -264,6 +315,19 @@ namespace TwoDo
             {
                 mainForm.CharForm.Focus();
             }
+        }
+
+        private void NewCharacter_Click(object sender, EventArgs e)
+        {
+            if (mainForm.CharForm == null)
+            {
+                mainForm.CharForm = new CharacterForm(true);
+                if (CharacterNode != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
+                setFormBounds(mainForm.CharForm);
+            }
+            var newCharForm = new NewCharacterForm();
+            newCharForm.Save += mainForm.CharForm.newCharForm_Save;
+            newCharForm.ShowDialog();
         }
 
         private void MapForm_click(object sender, EventArgs e)
@@ -334,23 +398,67 @@ namespace TwoDo
 
         private void OpenMdiForm(Form form)
         {
+            setFormBounds(form);
+            form.Show();
+        }
+
+        private void setFormBounds(Form form)
+        {
             form.MdiParent = mainForm;
             form.Dock = DockStyle.Fill;
             (form as ITwoDoMdiForm).MdiExitClick += CloseMdiForm;
-            form.Show();
         }
 
         private void CloseMdiForm(object sender, EventArgs e)
         {
             switch ((e as IMdiEventArgs).FormType)
             {
-                case MdiFormType.Character: mainForm.CharForm = null; break;
+                case MdiFormType.Character:
+                    if (CharacterNode == null) { CharacterNode = new XmlDocument().CreateElement("CharacterForm"); }
+                    CharacterNode.InnerXml = getInnerXml("Characters", mainForm.CharForm.ToXml());
+                    mainForm.CharForm = null; 
+                    break;
                 case MdiFormType.Map: mainForm.MapForm = null; break;
                 case MdiFormType.Skill: mainForm.SkillForm = null; break;
                 case MdiFormType.Items: mainForm.ItemForm = null; break;
                 case MdiFormType.Quest: mainForm.QuestForm = null; break;
                 case MdiFormType.Lore: mainForm.LoreForm = null; break;
             }               
+        }
+
+        private string getInnerXml(string tag, string xml)
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(xml);
+            var node = xmlDoc.DocumentElement.SelectSingleNode(tag);
+            return node.OuterXml;
+        }
+
+        private string Base64Encode(string text)
+        {
+            var bytes = System.Text.Encoding.UTF8.GetBytes(text);
+            return System.Convert.ToBase64String(bytes);
+        }
+
+        private string Base64Decode(string base64EncodedText)
+        {
+            var bytes = System.Convert.FromBase64String(base64EncodedText);
+            return System.Text.Encoding.UTF8.GetString(bytes);
+        }
+
+        private byte[] ConvertObjectToByteArray(object o)
+        {
+            BinaryFormatter binary = new BinaryFormatter();
+            MemoryStream stream = new MemoryStream();
+            binary.Serialize(stream, o);
+            return stream.ToArray();
+        }
+
+        private object ConvertByteArrayToObject(byte[] bytes)
+        {
+            BinaryFormatter binary = new BinaryFormatter();
+            Stream stream = new MemoryStream(bytes);
+            return binary.Deserialize(stream);
         }
     }
 }

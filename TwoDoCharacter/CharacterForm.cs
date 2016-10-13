@@ -14,11 +14,13 @@ using TwoDoUtils;
 
 namespace TwoDoCharacter
 {
-    public partial class CharacterForm : CustomForm, ITwoDoMdiForm, ITwoDoXml
+    public partial class CharacterForm : CustomForm, ITwoDoMdiForm, ITwoDoXml, ICustomGridHolder
     {
         public event EventHandler MdiExitClick;
         public CustomGridPanel CharacterGrid;
-        private NewCharacterForm newCharForm;        
+        private NewCharacterForm newCharForm;
+        private ToolStripMenuItem editMenuItem;
+        private int currentIndexEdit = 0;
        
         public CharacterForm(bool onlyCloseButton) : base(onlyCloseButton, false)
         {            
@@ -30,11 +32,38 @@ namespace TwoDoCharacter
             menuTitle = "Character";
             CharacterGrid = new CustomGridPanel(this.ClientRectangle);
             CharacterGrid.Padding = new Padding(1,1,0, 30);
-            CharacterGrid.FloatingMenu.MenuItems.Add(new MenuItem("New Character", newCharacter_click));
-            CharacterGrid.FloatingMenu.MenuItems.Add(new MenuItem("Sort", Sort_click));
+            setFloatMenuConfig();
             this.Controls.Add(CharacterGrid);            
         }
 
+        private void setFloatMenuConfig()
+        {
+            CharacterGrid.FloatingMenu.Items.Add(new ToolStripMenuItem("New Character", null, newCharacter_click));            
+            editMenuItem = new ToolStripMenuItem("Edit", null, Edit_click);
+            editMenuItem.Visible = false;
+            CharacterGrid.FloatingMenu.Items.Add(editMenuItem);
+            CharacterGrid.FloatingMenu.Items.Add(new ToolStripMenuItem("Sort", null, Sort_click));
+            CharacterGrid.FloatingMenu.Closed += FloatingMenu_Closing;
+        }
+
+        private void FloatingMenu_Closing(object sender, EventArgs e)
+        {
+            editMenuItem.Visible = false;
+        }
+
+        private void Edit_click(object sender, EventArgs e)
+        {
+            EditChar();
+        }
+
+        private void EditChar()
+        {
+            Character edit = (CharacterGrid.Items.Find(x => x.GetItemIndex() == currentIndexEdit) as CharacterGridItem).character;
+            newCharForm = new NewCharacterForm(edit, currentIndexEdit);
+            newCharForm.Save += newCharForm_Save;
+            newCharForm.ShowDialog();
+        }
+        
         private void Sort_click(object sender, EventArgs e)
         {
             
@@ -47,17 +76,18 @@ namespace TwoDoCharacter
             newCharForm.ShowDialog();
         }
 
-        private void newCharForm_Save(object sender, EventArgs e)
+        public void newCharForm_Save(object sender, EventArgs e)
         {
             var character = (sender as NewCharacterForm).character;
             if ((e as NewCharacterEvents).Action == OnCloseAction.Edit)
             {
-                var a = CharacterGrid.Items.Find(x => x.GetItemIndex() == (e as NewCharacterEvents).editedIndex);
-            }
+                var griditem = (CharacterGrid.Items.Find(x => x.GetItemIndex() == (e as NewCharacterEvents).editedIndex) as CharacterGridItem);
+                griditem.ReloadDisplay();
+            }  
             else if ((e as NewCharacterEvents).Action == OnCloseAction.Add)
             {
                 CharacterGrid.Items.Add(new CharacterGridItem(character, CharacterGrid.Items.Count + 1));                
-            } 
+            }
             RefreshGrid();
         }
 
@@ -93,7 +123,6 @@ namespace TwoDoCharacter
             return MdiFormType.Character;
         }
 
-
         public void LoadFromXml(string xml)
         {
             XmlDocument doc = new XmlDocument();
@@ -121,10 +150,16 @@ namespace TwoDoCharacter
             return xml.InnerXml;
         }
 
+        public void EditableIndex(int index)
+        {      
+            editMenuItem.Visible = true;
+            currentIndexEdit = index;   
+        }
 
-        public XmlNode ToNodeXml()
+        public void EditItem(int index)
         {
-            throw new NotImplementedException();
+            currentIndexEdit = index;
+            EditChar();
         }
     }
 

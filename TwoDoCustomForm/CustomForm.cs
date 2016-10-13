@@ -210,20 +210,7 @@ namespace TwoDoCustomForm
                             this.WindowState = FormWindowState.Minimized;
                         else if (btn.ButtonType == CustomMenuBarButton.MenuBarButtonType.Maximize)
                         {
-                            if (isMaximized)
-                            {
-                                isMaximized = false;
-                                this.Size = new Size(DefaultFormSize.Width, DefaultFormSize.Height);
-                                this.Location = new Point(DefaultFormSize.Left, DefaultFormSize.Top);
-                            }
-                            else
-                            {
-                                DefaultFormSize = new Rectangle(this.Location, this.Size);
-                                Rectangle wa = Screen.GetWorkingArea(this);
-                                this.Size = new Size(wa.Width, wa.Height);
-                                this.Location = new Point(wa.Left, wa.Top);
-                                isMaximized = true;
-                            }
+                            ToogleMaxMinSize();
                         }
                         else if (btn.ButtonType == CustomMenuBarButton.MenuBarButtonType.Close)
                         {
@@ -231,6 +218,24 @@ namespace TwoDoCustomForm
                         }
                     }
                 }
+            }
+        }
+
+        public void ToogleMaxMinSize()
+        {
+            if (isMaximized)
+            {
+                isMaximized = false;
+                this.Size = new Size(DefaultFormSize.Width, DefaultFormSize.Height);
+                this.Location = new Point(DefaultFormSize.Left, DefaultFormSize.Top);
+            }
+            else
+            {
+                DefaultFormSize = new Rectangle(this.Location, this.Size);
+                Rectangle wa = Screen.GetWorkingArea(this);
+                this.Size = new Size(wa.Width, wa.Height);
+                this.Location = new Point(wa.Left, wa.Top);
+                isMaximized = true;
             }
         }
 

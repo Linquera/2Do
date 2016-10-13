@@ -12,6 +12,10 @@ namespace TwoDoUtils
     {
         public static string ImageToString(this Image value)
         {
+            if ( value == null)
+            {
+                return string.Empty;
+            }
             using (Image image = value)
             {
                 using (MemoryStream m = new MemoryStream())
