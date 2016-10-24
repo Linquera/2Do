@@ -17,31 +17,56 @@ namespace TwoDoCharacter
         public event EventHandler Save;
         private OnCloseAction Action;
         private int editedIndex = 0;
+        private bool advancedOpen { get; set; }
+        private Size DefaultSize = new Size(495, 225);
+        private Size AdvancedSize = new Size(495, 483);
 
         public NewCharacterForm() : base(true, true) 
         {            
-            this.MaximumSize = new Size(500, 230);
+            this.MaximumSize = DefaultSize;
+            advancedOpen = false;
             menuTitle = "New Character";
             InitializeComponent();
-            LoadEvents();            
+            setButtonEvents();
+            LoadEvents();
             picChar.SizeMode = PictureBoxSizeMode.StretchImage;
             Action = OnCloseAction.Add;            
             this.CenterToParent();
             this.ShowInTaskbar = false;
-        }
+        }              
 
         public NewCharacterForm(Character Char, int index) : this()
         {
-            character = Char;
+            character = Char;            
             LoadFormInfo();
             Action = OnCloseAction.Edit;
             editedIndex = index;
         }
 
-        private void LoadEvents()
+        private void setButtonEvents()
         {
-            btnSelectImg.Click += SelectImg_click;
+            btnAdvanced.Click += Advanced_click;
+            setButtonsConfig(btnAdvanced);
+
             btnAdd.Click += Add_click;
+            setButtonsConfig(btnAdd);
+
+            btnSelectImg.Click += SelectImg_click;
+            setButtonsConfig(btnSelectImg);
+        }  
+
+        private void setButtonsConfig(Button button)
+        {
+            button.FlatStyle = FlatStyle.Flat;
+            button.FlatAppearance.BorderSize = 1;
+            button.FlatAppearance.BorderColor = Color.Black;
+            button.FlatAppearance.MouseOverBackColor = Color.FromArgb(150, 150, 150);
+            button.BackColor = Color.FromArgb(190, 190, 190);
+            button.ForeColor = Color.Black;     
+        }
+
+        private void LoadEvents()
+        {            
             txtBaseHP.KeyPress += NumebersOnly;
             txtBaseMP.KeyPress += NumebersOnly;
             txtDex.KeyPress += NumebersOnly;
@@ -50,6 +75,21 @@ namespace TwoDoCharacter
             txtMinLevel.KeyPress += NumebersOnly;
             txtStr.KeyPress += NumebersOnly;
             txtVit.KeyPress += NumebersOnly;            
+        }
+
+        private void Advanced_click(object sender, EventArgs e)
+        {
+            if (advancedOpen)
+            {
+                this.MaximumSize = DefaultSize;
+                advancedOpen = false;
+            }
+            else
+            {
+                this.MaximumSize = AdvancedSize;
+                this.Size = AdvancedSize;
+                advancedOpen = true;
+            }
         }
 
         private void Add_click(object sender, EventArgs e)

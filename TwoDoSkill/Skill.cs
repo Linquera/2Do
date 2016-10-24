@@ -7,7 +7,7 @@ using TwoDoInterfaces;
 
 namespace TwoDoSkill
 {
-    public class Skill : ITwoDoXml
+    public class Skill //: ITwoDoXml
     {
         public void LoadFromXml(string xml)
         {

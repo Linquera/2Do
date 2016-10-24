@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TwoDoCharacter;
 using TwoDoItem;
+using TwoDoLanguages;
 using TwoDoLore;
 using TwoDoMap;
 using TwoDoQuest;
 using TwoDoSkill;
+using TwoDoInterfaces;
 
 namespace TwoDo
 {
@@ -29,6 +31,7 @@ namespace TwoDo
 
         public TwoDoMainForm()
         {
+            var b = Language.Instance.Character;
             InitializeComponent();
             controller = new ControlsController(this);
                         
@@ -40,7 +43,7 @@ namespace TwoDo
 
         public override void onExitclick()
         {
-            if (controller.PendingSave)
+           /* if (controller.PendingSave)
             {
                 switch(MessageBox.Show("Unsaved information will be lost?", "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information))
                 {
@@ -52,7 +55,7 @@ namespace TwoDo
                     break;
                 }
             }
-            else
+            else*/
                 Application.Exit();
         }
     }

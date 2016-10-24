@@ -97,6 +97,10 @@
       <Project>{042c9cd1-ca3d-4784-85f4-19b7d03a8c02}</Project>
       <Name>TwoDoItem</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TwoDoLanguages\TwoDoLanguages.csproj">
+      <Project>{58b7e583-6066-4e73-81cb-07e063a99449}</Project>
+      <Name>TwoDoLanguages</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TwoDoLore\TwoDoLore.csproj">
       <Project>{9380351a-0402-4c1e-a561-e0ee6f392e5b}</Project>
       <Name>TwoDoLore</Name>

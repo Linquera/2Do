@@ -11,6 +11,7 @@ namespace TwoDoInterfaces
     {
         bool inControls();
         void SetToControls();
+        void RemoveFromControls();
         void SetSize(Size size);
         void SetLocation(Point point);
         void ReloadDisplay();

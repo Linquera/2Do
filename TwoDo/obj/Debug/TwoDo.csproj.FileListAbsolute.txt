@@ -1,9 +1,9 @@
-C:\Linco\2Do\bin\TwoDo.exe
 C:\Linco\2Do\bin\TwoDo.exe.config
+C:\Linco\2Do\bin\TwoDo.exe
+C:\Linco\2Do\bin\TwoDo.pdb
 C:\Linco\2Do\TwoDo\obj\Debug\TwoDo.csprojResolveAssemblyReference.cache
 C:\Linco\2Do\TwoDo\obj\Debug\TwoDo.TwoDoMainForm.resources
 C:\Linco\2Do\TwoDo\obj\Debug\TwoDo.Properties.Resources.resources
 C:\Linco\2Do\TwoDo\obj\Debug\TwoDo.csproj.GenerateResource.Cache
 C:\Linco\2Do\TwoDo\obj\Debug\TwoDo.exe
 C:\Linco\2Do\TwoDo\obj\Debug\TwoDo.pdb
-C:\Linco\2Do\bin\TwoDo.pdb

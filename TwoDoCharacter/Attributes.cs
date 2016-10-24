@@ -10,6 +10,7 @@ namespace TwoDoCharacter
 {
     public class Attributes : IAttributes, ITwoDoXml
     {
+        private CustomXml Xml { get; set; }
         public int Strength { get; set; }
         public int Inteligence { get; set; }
         public int Dexterity { get; set; }
@@ -21,6 +22,7 @@ namespace TwoDoCharacter
 
         public Attributes()
         {
+            Xml = new CustomXml("Attributes");
             Strength = 1;
             Inteligence = 1;
             Dexterity = 1;
@@ -34,9 +36,8 @@ namespace TwoDoCharacter
         public void LoadFromXml(string xml)
         {
             int aux = 0;
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(xml);
-            var nodes = doc.SelectNodes("Attributes");
+            Xml.LoadXml(xml);
+            var nodes = Xml.SelectNodes("Attributes");
             foreach (XmlNode node in nodes)
             {
                 Strength = int.TryParse(node.SelectSingleNode("Strength").InnerText, out aux) ? aux : 1;
@@ -48,21 +49,30 @@ namespace TwoDoCharacter
                 BaseHP = int.TryParse(node.SelectSingleNode("BaseHP").InnerText, out aux) ? aux : 100;
                 BaseMP = int.TryParse(node.SelectSingleNode("BaseMP").InnerText, out aux) ? aux : 100;
             }
+        }        
+
+        private void UpdateXml()
+        {
+            Xml.Node("Strength", Strength.ToString());
+            Xml.Node("Inteligence", Inteligence.ToString());
+            Xml.Node("Dexterity", Dexterity.ToString());
+            Xml.Node("Vitality", Vitality.ToString());
+            Xml.Node("Luck", Luck.ToString());
+            Xml.Node("BaseHP", BaseHP.ToString());
+            Xml.Node("BaseMP", BaseMP.ToString());
+            Xml.Node("MinLevel", MinLevel.ToString());
         }
 
         public string ToXml()
         {
-            XmlDocument xml = new XmlDocument();
-            xml.AddRootElement("Attributes");
-            xml.AddNode("Strength", Strength.ToString());
-            xml.AddNode("Inteligence", Inteligence.ToString());
-            xml.AddNode("Dexterity", Dexterity.ToString());
-            xml.AddNode("Vitality", Vitality.ToString());
-            xml.AddNode("Luck", Luck.ToString());
-            xml.AddNode("BaseHP", BaseHP.ToString());
-            xml.AddNode("BaseMP", BaseMP.ToString());
-            xml.AddNode("MinLevel", MinLevel.ToString());
-            return xml.InnerXml;
+            UpdateXml();
+            return Xml.InnerXml;
+        }
+
+        public CustomXml asXml()
+        {
+            UpdateXml();
+            return Xml;
         }
     }
 }

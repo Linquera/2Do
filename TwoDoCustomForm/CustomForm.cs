@@ -7,6 +7,7 @@ using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using TwoDoLanguages;
 
 namespace TwoDoCustomForm
 {
@@ -96,6 +97,7 @@ namespace TwoDoCustomForm
         protected bool isMouseButtonDown = false;
         protected bool isMaximized = false;
         protected string menuTitle = "";
+        private Language language { get; set; }
 
         public CustomForm()
         {

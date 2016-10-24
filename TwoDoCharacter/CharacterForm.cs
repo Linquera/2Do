@@ -16,19 +16,23 @@ namespace TwoDoCharacter
 {
     public partial class CharacterForm : CustomForm, ITwoDoMdiForm, ITwoDoXml, ICustomGridHolder
     {
-        public event EventHandler MdiExitClick;
-        public CustomGridPanel CharacterGrid;
+        public static string Root = "CharacterForm";        
         private NewCharacterForm newCharForm;
         private ToolStripMenuItem editMenuItem;
+        private ToolStripMenuItem deleteMenuItem;
         private int currentIndexEdit = 0;
+        private CustomXml Xml { get; set; }
+
+        public event EventHandler MdiExitClick;
+        public CustomGridPanel CharacterGrid;
        
         public CharacterForm(bool onlyCloseButton) : base(onlyCloseButton, false)
         {            
             InitializeComponent();
             MainMenuBar.BarColor = Color.FromArgb(70,70,70);
             MainMenuBar.BarGradientColorStart = Color.FromArgb(70, 70, 70);
-            MainMenuBar.BarGradientColorEnd = Color.FromArgb(70, 70, 70);           
-
+            MainMenuBar.BarGradientColorEnd = Color.FromArgb(70, 70, 70);
+            Xml = new CustomXml(Root);
             menuTitle = "Character";
             CharacterGrid = new CustomGridPanel(this.ClientRectangle);
             CharacterGrid.Padding = new Padding(1,1,0, 30);
@@ -42,13 +46,26 @@ namespace TwoDoCharacter
             editMenuItem = new ToolStripMenuItem("Edit", null, Edit_click);
             editMenuItem.Visible = false;
             CharacterGrid.FloatingMenu.Items.Add(editMenuItem);
+            deleteMenuItem = new ToolStripMenuItem("Delete", null, Delete_click);
+            deleteMenuItem.Visible = false;
+            CharacterGrid.FloatingMenu.Items.Add(deleteMenuItem);
             CharacterGrid.FloatingMenu.Items.Add(new ToolStripMenuItem("Sort", null, Sort_click));
             CharacterGrid.FloatingMenu.Closed += FloatingMenu_Closing;
+        }
+
+        private void Delete_click(object sender, EventArgs e)
+        {
+            var delete = (CharacterGrid.Items.Find(x => x.GetItemIndex() == currentIndexEdit));
+            if (MessageBox.Show(string.Format("Remove \"{0}\" ?", (delete as CharacterGridItem).character.Name), "", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                CharacterGrid.RemoveItem(delete);                
+            }
         }
 
         private void FloatingMenu_Closing(object sender, EventArgs e)
         {
             editMenuItem.Visible = false;
+            deleteMenuItem.Visible = false;
         }
 
         private void Edit_click(object sender, EventArgs e)
@@ -125,9 +142,8 @@ namespace TwoDoCharacter
 
         public void LoadFromXml(string xml)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(xml);
-            var chars = doc.DocumentElement.SelectNodes("Character");
+            Xml.LoadXml(xml);
+            var chars = Xml.DocumentElement.SelectNodes("Characters/Character");
             foreach (XmlNode cha in chars)
             {
                 var grid = new CharacterGridItem();
@@ -139,20 +155,13 @@ namespace TwoDoCharacter
 
         public string ToXml()
         {
-            XmlDocument xml = new XmlDocument();
-            xml.AddRootElement("CharacterForm");
-            XmlNode node = xml.CreateElement("Characters");
-            foreach (var item in CharacterGrid.Items)
-            {
-                node.AddXmlNode(item.ToXml());
-            }
-            xml.AddNode(node);
-            return xml.InnerXml;
+            return asXml().InnerXml;
         }
 
         public void EditableIndex(int index)
         {      
             editMenuItem.Visible = true;
+            deleteMenuItem.Visible = true;
             currentIndexEdit = index;   
         }
 
@@ -160,6 +169,18 @@ namespace TwoDoCharacter
         {
             currentIndexEdit = index;
             EditChar();
+        }
+
+
+        public CustomXml asXml()
+        {
+            CustomXml innerXml = new CustomXml("Characters");
+            foreach (var item in CharacterGrid.Items)
+            {
+                innerXml.Node(item.asXml());
+            }            
+            Xml.Node(innerXml,Root);
+            return Xml;
         }
     }
 

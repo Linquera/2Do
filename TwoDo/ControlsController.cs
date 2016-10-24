@@ -23,19 +23,12 @@ namespace TwoDo
     public class ControlsController
     {
         private TwoDoMainForm mainForm;
-        private XmlNode characterNode;
-        private XmlNode mapNode;
-        private XmlNode skillNode;
-        private XmlNode itemNode;
-        private XmlNode questNode;
-        private XmlNode loreNode;
-
-        public XmlNode CharacterNode { get { return characterNode; } set { characterNode = value; PendingSave = true; } }
-        public XmlNode MapNode { get { return mapNode; } set { mapNode = value; PendingSave = true; } }
-        public XmlNode SkillNode { get { return skillNode; } set { skillNode = value; PendingSave = true; } }
-        public XmlNode ItemNode { get { return itemNode; } set { itemNode = value; PendingSave = true; } }
-        public XmlNode QuestNode { get { return questNode; } set { questNode = value; PendingSave = true; } }
-        public XmlNode LoreNode { get { return loreNode; } set { loreNode = value; PendingSave = true; } }
+        public CustomXml CharacterNode { get; set; }
+        public CustomXml MapNode { get; set; }
+        public CustomXml SkillNode { get; set; }
+        public CustomXml ItemNode { get; set; }
+        public CustomXml QuestNode { get; set; }
+        public CustomXml LoreNode { get; set; }
         public bool PendingSave = false;
         
         public ControlsController(TwoDoMainForm form)
@@ -45,6 +38,17 @@ namespace TwoDo
             AddToolButtons();
             AddSideButtons();
             mainForm.ShowButtons();
+            CreateXmls();
+        }
+
+        private void CreateXmls()
+        {
+            CharacterNode = new CustomXml(CharacterForm.Root);
+            //MapNode = new CustomXml("");
+            //SkillNode = new CustomXml("");
+            //ItemNode = new CustomXml("");
+            //QuestNode = new CustomXml("");
+            //LoreNode = new CustomXml("");
         }
 
         internal void AddMenus()
@@ -209,13 +213,13 @@ namespace TwoDo
 
         private void Load_Click(object sender, EventArgs e)
         {
-            if (PendingSave)
+            /*if (PendingSave)
             {
-                if(MessageBox.Show("Unsaved information will be lost! Continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
+                if(MessageBox.Show("Unsaved information will be lost. Save before close?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
                 {
                     return;
                 }
-            }
+            }*/
             mainForm.ProjectSave = new ProjectSave();
             OpenFileDialog op = new OpenFileDialog();
             op.InitialDirectory = "c:\\"; //save last open position
@@ -229,12 +233,12 @@ namespace TwoDo
                     xml.LoadXml(Base64Decode((string)ConvertByteArrayToObject(File.ReadAllBytes(op.FileName))));
                     var node = xml.DocumentElement.SelectSingleNode("//TwoDo");
                     mainForm.ProjectSave.LoadFromXml(node.SelectSingleNode("ProjectSave").OuterXml);
-                    CharacterNode = node.SelectSingleNode("CharacterForm");
-                    MapNode = node.SelectSingleNode("MapForm");
-                    SkillNode = node.SelectSingleNode("SkillForm");
-                    ItemNode = node.SelectSingleNode("ItemForm");
-                    QuestNode = node.SelectSingleNode("QuestForm");
-                    LoreNode = node.SelectSingleNode("LoreForm");
+                    CharacterNode.LoadXml(node.SelectSingleNode("CharacterForm").OuterXml);
+                    //MapNode.LoadXml(node.SelectSingleNode("MapForm").InnerXml);
+                    //SkillNode.LoadXml(node.SelectSingleNode("SkillForm").InnerXml);
+                    //ItemNode.LoadXml(node.SelectSingleNode("ItemForm").InnerXml);
+                    //QuestNode.LoadXml(node.SelectSingleNode("QuestForm").InnerXml);
+                    //LoreNode.LoadXml(node.SelectSingleNode("LoreForm").InnerXml);
 
                     ReloadOpenForms();
                 }
@@ -247,7 +251,7 @@ namespace TwoDo
 
         private void ReloadOpenForms()
         {
-            if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
+            if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.OuterXml); }
             /*if (mainForm.MapForm != null)  { mainForm.MapForm.LoadFromXml(CharacterNode.InnerXml); }
             if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
             if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
@@ -276,12 +280,25 @@ namespace TwoDo
                     return;
             }
 
-            XmlDocument xml = new XmlDocument();
-            xml.AddRootElement("TwoDo");
-            xml.AddXmlNode("TwoDo", mainForm.ProjectSave.ToXml());
-            xml.AddXmlNode("TwoDo", mainForm.CharForm.ToXml());
+            UpdateXmlNodes();
+            CustomXml xml = new CustomXml("TwoDo");
+            xml.Node(mainForm.ProjectSave.asXml());
+            xml.Node(CharacterNode); //mainForm.CharForm.asXml());
+            File.WriteAllBytes(mainForm.ProjectSave.Name, ConvertObjectToByteArray(Base64Encode(xml.InnerXml)));
+            
+            //for teste purpose
+            File.WriteAllText(mainForm.ProjectSave.Name + ".xml", xml.InnerXml);
+        }
 
-            File.WriteAllBytes(mainForm.ProjectSave.Name, ConvertObjectToByteArray(Base64Encode(xml.OuterXml)));
+        private void UpdateXmlNodes()
+        {
+            if (mainForm.CharForm != null) { CharacterNode = mainForm.CharForm.asXml(); }
+            /*if (mainForm.MapForm != null)  { mainForm.MapForm.LoadFromXml(CharacterNode.InnerXml); }
+            if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
+            if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
+            if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
+            if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
+            if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }*/
         }
 
         private Button setButton(string text, Image icon, EventHandler e)
@@ -308,7 +325,7 @@ namespace TwoDo
             if (mainForm.CharForm == null)
             {
                 mainForm.CharForm = new CharacterForm(true);
-                if (CharacterNode != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }                    
+                if (CharacterNode != null) { mainForm.CharForm.LoadFromXml(CharacterNode.OuterXml); }               
                 OpenMdiForm(mainForm.CharForm);
             }
             else if (!mainForm.CharForm.Focused)
@@ -322,7 +339,7 @@ namespace TwoDo
             if (mainForm.CharForm == null)
             {
                 mainForm.CharForm = new CharacterForm(true);
-                if (CharacterNode != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
+                if (CharacterNode != null) { mainForm.CharForm.LoadFromXml(CharacterNode.OuterXml); }
                 setFormBounds(mainForm.CharForm);
             }
             var newCharForm = new NewCharacterForm();
@@ -411,29 +428,23 @@ namespace TwoDo
 
         private void CloseMdiForm(object sender, EventArgs e)
         {
-            switch ((e as IMdiEventArgs).FormType)
-            {
-                case MdiFormType.Character:
-                    if (CharacterNode == null) { CharacterNode = new XmlDocument().CreateElement("CharacterForm"); }
-                    CharacterNode.InnerXml = getInnerXml("Characters", mainForm.CharForm.ToXml());
-                    mainForm.CharForm = null; 
-                    break;
-                case MdiFormType.Map: mainForm.MapForm = null; break;
-                case MdiFormType.Skill: mainForm.SkillForm = null; break;
-                case MdiFormType.Items: mainForm.ItemForm = null; break;
-                case MdiFormType.Quest: mainForm.QuestForm = null; break;
-                case MdiFormType.Lore: mainForm.LoreForm = null; break;
-            }               
+            //if (PendingSave)
+            //{
+                switch ((e as IMdiEventArgs).FormType)
+                {
+                    case MdiFormType.Character:                        
+                        CharacterNode = mainForm.CharForm.asXml();
+                        mainForm.CharForm = null;
+                        break;
+                    case MdiFormType.Map: mainForm.MapForm = null; break;
+                    case MdiFormType.Skill: mainForm.SkillForm = null; break;
+                    case MdiFormType.Items: mainForm.ItemForm = null; break;
+                    case MdiFormType.Quest: mainForm.QuestForm = null; break;
+                    case MdiFormType.Lore: mainForm.LoreForm = null; break;
+                }
+            //}
         }
-
-        private string getInnerXml(string tag, string xml)
-        {
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(xml);
-            var node = xmlDoc.DocumentElement.SelectSingleNode(tag);
-            return node.OuterXml;
-        }
-
+        
         private string Base64Encode(string text)
         {
             var bytes = System.Text.Encoding.UTF8.GetBytes(text);

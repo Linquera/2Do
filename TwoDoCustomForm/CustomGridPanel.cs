@@ -33,7 +33,7 @@ namespace TwoDoCustomForm
             base.OnMouseDown(e);
             if (e.Button == MouseButtons.Right)
             {
-                OpenFloatingMenu(e);
+                OpenFloatingMenu(e.Location);
             }
         }
 
@@ -77,9 +77,17 @@ namespace TwoDoCustomForm
             }
         }
 
-        public void OpenFloatingMenu(MouseEventArgs e)
+        public void RemoveItem(ICustomGridItem item)
         {
-            FloatingMenu.Show(this, e.Location);
+            item.RemoveFromControls();
+            this.Controls.Remove((Panel)item);
+            Items.Remove(item);
+            DrawItens();
+        }
+
+        public void OpenFloatingMenu(Point e)
+        {
+            FloatingMenu.Show(this, e);
         }
     }
 }

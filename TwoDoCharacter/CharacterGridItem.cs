@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using TwoDoInterfaces;
+using TwoDoUtils;
 
 namespace TwoDoCharacter
 {
@@ -59,7 +60,7 @@ namespace TwoDoCharacter
             if (this.Parent != null && e.Button == MouseButtons.Right)
             {
                 (this.Parent.Parent as ICustomGridHolder).EditableIndex(character.Index);
-                (this.Parent as ICustomGrid).OpenFloatingMenu(e);  
+                (this.Parent as ICustomGrid).OpenFloatingMenu(new Point(Location.X + e.X, Location.Y + e.Y));  
             }
         }
 
@@ -80,6 +81,11 @@ namespace TwoDoCharacter
         public void SetToControls()
         {
             inControl = true;
+        }
+
+        public void RemoveFromControls()
+        {
+            inControl = false;
         }
 
         public void SetSize(Size size)
@@ -123,6 +129,11 @@ namespace TwoDoCharacter
         {
             this.DisplayName.Text = this.character.Name;
             this.DisplayImage.Image = character.Figure;
+        }
+
+        public CustomXml asXml()
+        {
+            return character.asXml();
         }
     }
 }

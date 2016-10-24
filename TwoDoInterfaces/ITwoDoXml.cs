@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using TwoDoUtils;
 
 namespace TwoDoInterfaces
 {
@@ -11,5 +12,6 @@ namespace TwoDoInterfaces
     {
         void LoadFromXml(string xml);
         string ToXml();
+        CustomXml asXml();
     }
 }
