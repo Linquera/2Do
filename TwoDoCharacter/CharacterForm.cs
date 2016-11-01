@@ -11,6 +11,7 @@ using System.Xml;
 using TwoDoCustomForm;
 using TwoDoInterfaces;
 using TwoDoUtils;
+using TwoDoLanguages;
 
 namespace TwoDoCharacter
 {
@@ -33,7 +34,7 @@ namespace TwoDoCharacter
             MainMenuBar.BarGradientColorStart = Color.FromArgb(70, 70, 70);
             MainMenuBar.BarGradientColorEnd = Color.FromArgb(70, 70, 70);
             Xml = new CustomXml(Root);
-            menuTitle = "Character";
+            menuTitle = Language.Instance.Character;
             CharacterGrid = new CustomGridPanel(this.ClientRectangle);
             CharacterGrid.Padding = new Padding(1,1,0, 30);
             setFloatMenuConfig();
@@ -42,21 +43,22 @@ namespace TwoDoCharacter
 
         private void setFloatMenuConfig()
         {
-            CharacterGrid.FloatingMenu.Items.Add(new ToolStripMenuItem("New Character", null, newCharacter_click));            
-            editMenuItem = new ToolStripMenuItem("Edit", null, Edit_click);
+            CharacterGrid.FloatingMenu.Items.Add(new ToolStripMenuItem(Language.Instance.NewCharacter, null, newCharacter_click));            
+            editMenuItem = new ToolStripMenuItem(Language.Instance.Edit, null, Edit_click);
             editMenuItem.Visible = false;
             CharacterGrid.FloatingMenu.Items.Add(editMenuItem);
-            deleteMenuItem = new ToolStripMenuItem("Delete", null, Delete_click);
+            deleteMenuItem = new ToolStripMenuItem(Language.Instance.Delete, null, Delete_click);
             deleteMenuItem.Visible = false;
             CharacterGrid.FloatingMenu.Items.Add(deleteMenuItem);
-            CharacterGrid.FloatingMenu.Items.Add(new ToolStripMenuItem("Sort", null, Sort_click));
+            CharacterGrid.FloatingMenu.Items.Add(new ToolStripMenuItem(Language.Instance.Sort, null, Sort_click));
             CharacterGrid.FloatingMenu.Closed += FloatingMenu_Closing;
         }
 
         private void Delete_click(object sender, EventArgs e)
         {
             var delete = (CharacterGrid.Items.Find(x => x.GetItemIndex() == currentIndexEdit));
-            if (MessageBox.Show(string.Format("Remove \"{0}\" ?", (delete as CharacterGridItem).character.Name), "", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            if (MessageBox.Show(string.Format("{0} \"{1}\" ?", Language.Instance.Delete, (delete as CharacterGridItem).character.Name), 
+                "", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
                 CharacterGrid.RemoveItem(delete);                
             }
@@ -109,7 +111,7 @@ namespace TwoDoCharacter
         }
 
         private void RefreshGrid()
-        {
+        {            
             CharacterGrid.DrawItens();
         }
         
@@ -181,7 +183,7 @@ namespace TwoDoCharacter
             }            
             Xml.Node(innerXml,Root);
             return Xml;
-        }
+        }        
     }
 
     public class CharacterEvents : EventArgs, IMdiEventArgs

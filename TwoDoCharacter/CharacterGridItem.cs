@@ -7,23 +7,18 @@ using System.Windows.Forms;
 using System.Drawing;
 using TwoDoInterfaces;
 using TwoDoUtils;
+using TwoDoCustomForm;
 
 namespace TwoDoCharacter
 {
-    public class CharacterGridItem : Panel, ICustomGridItem
-    {
-        private bool inControl = false;        
+    public class CharacterGridItem : CustomGridItem
+    {                
         public Character character;        
         private Label DisplayName = new Label();
-        private PictureBox DisplayImage = new PictureBox();
+        private PictureBox DisplayImage = new PictureBox();        
 
-        private Panel eventCapturer = new Panel();
-
-        public CharacterGridItem()        
-        {
-            BackColor = Color.FromArgb(65, 65, 65);
-            BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;            
-        }
+        public CharacterGridItem() : base()       
+        {  }
 
         public CharacterGridItem(Character character, int index) : this()
         {
@@ -35,12 +30,11 @@ namespace TwoDoCharacter
 
         private void setImageConfig()
         {
-            DisplayImage.Size = new Size(160, 160); // todo -make size configurable
+            DisplayImage.Size = new Size(160, 160);
             DisplayImage.Image = character.Figure;
             DisplayImage.SizeMode = PictureBoxSizeMode.StretchImage;
             DisplayImage.MouseDoubleClick += event_MouseDoubleClick;
-            DisplayImage.MouseDown += event_MouseDown;
-            Controls.Add(DisplayImage);
+            AddComponent(DisplayImage);
         }
 
         private void setLabelConfig()
@@ -48,22 +42,11 @@ namespace TwoDoCharacter
             DisplayName.Text = character.Name;
             DisplayName.ForeColor = Color.White;
             DisplayName.Dock = DockStyle.Bottom;
-            DisplayName.TextAlign = ContentAlignment.BottomCenter;
+            DisplayName.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             DisplayName.MouseDoubleClick += event_MouseDoubleClick;
-            DisplayName.MouseDown += event_MouseDown;
-            Controls.Add(DisplayName);            
-        }
-
-
-        private void event_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (this.Parent != null && e.Button == MouseButtons.Right)
-            {
-                (this.Parent.Parent as ICustomGridHolder).EditableIndex(character.Index);
-                (this.Parent as ICustomGrid).OpenFloatingMenu(new Point(Location.X + e.X, Location.Y + e.Y));  
-            }
-        }
-
+            AddComponent(DisplayName);           
+        }        
+        
         private void event_MouseDoubleClick(object sender, MouseEventArgs e)
         {            
             if (this.Parent != null)
@@ -71,32 +54,7 @@ namespace TwoDoCharacter
                 (this.Parent.Parent as ICustomGridHolder).EditableIndex(character.Index);
                 (this.Parent.Parent as ICustomGridHolder).EditItem(character.Index);
             }            
-        }
-
-        public bool inControls()
-        {
-            return inControl;
-        }
-
-        public void SetToControls()
-        {
-            inControl = true;
-        }
-
-        public void RemoveFromControls()
-        {
-            inControl = false;
-        }
-
-        public void SetSize(Size size)
-        {
-            this.Size = size;
-        }
-
-        public void SetLocation(Point point)
-        {
-            this.Location = point;
-        }
+        }        
 
         public string getCharName()
         {
@@ -107,12 +65,12 @@ namespace TwoDoCharacter
             return "";
         }
 
-        public int GetItemIndex()
+        public override int GetItemIndex()
         {
             return character.Index;
         }
 
-        public void LoadFromXml(string xml)
+        public override void LoadFromXml(string xml)
         {
             character = new Character();
             character.LoadFromXml(xml);
@@ -120,20 +78,20 @@ namespace TwoDoCharacter
             setLabelConfig();
         }
 
-        public string ToXml()
+        public override string ToXml()
         {
             return character.ToXml();
         }
 
-        public void ReloadDisplay()
+        public override void ReloadDisplay()
         {
             this.DisplayName.Text = this.character.Name;
             this.DisplayImage.Image = character.Figure;
         }
 
-        public CustomXml asXml()
+        public override CustomXml asXml()
         {
             return character.asXml();
-        }
+        }        
     }
 }

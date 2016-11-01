@@ -24,8 +24,7 @@ namespace TwoDoCustomForm
         public bool useCustomMenuBar { get; set; }
 
         //Custom Controls        
-        public CustomStatusBar StatusBar = new CustomStatusBar();
-        public CustomBorder Border = new CustomBorder();
+        public CustomStatusBar StatusBar = new CustomStatusBar();        
         public CustomButtonBar SideBar = new CustomButtonBar();
         public CustomButtonBar ToolBox = new CustomButtonBar();
         public CustomMenuStrip CustomMenu;
@@ -104,11 +103,8 @@ namespace TwoDoCustomForm
 
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
         {
-            Rectangle rcBorder = new Rectangle(0, 0, this.ClientRectangle.Width - 1, this.ClientRectangle.Height - 1);
-
             // rendering
-            DrawStatusBar(e.Graphics);
-            Border.Render(rcBorder, e.Graphics);
+            DrawStatusBar(e.Graphics);            
             base.OnPaint(e);
             DrawToolBox(e.Graphics);
             DrawSideBar(e.Graphics);            

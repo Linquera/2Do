@@ -89,6 +89,7 @@ namespace TwoDoCustomForm
         protected GraphicsPath MenuButtonsBox = new GraphicsPath();
         
         public CustomMenuBar MainMenuBar = new CustomMenuBar();
+        public CustomBorder Border = new CustomBorder();
         private bool OnlyCloseButton { get; set; }
         private bool AllowedToMove { get; set; }
         private Font font = new Font("Visitor TT2 BRK", 9);     
@@ -171,6 +172,8 @@ namespace TwoDoCustomForm
 
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
         {
+            Rectangle rcBorder = new Rectangle(0, 0, this.ClientRectangle.Width - 1, this.ClientRectangle.Height - 1);
+            Border.Render(rcBorder, e.Graphics);
             DrawButtonsBox(e.Graphics);
             DrawMenuBar(e.Graphics);
             if (!string.IsNullOrEmpty(menuTitle)) 

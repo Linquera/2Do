@@ -31,7 +31,6 @@ namespace TwoDo
 
         public TwoDoMainForm()
         {
-            var b = Language.Instance.Character;
             InitializeComponent();
             controller = new ControlsController(this);
                         

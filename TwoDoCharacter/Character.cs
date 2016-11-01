@@ -44,7 +44,7 @@ namespace TwoDoCharacter
         {            
             Xml.Node("Index", Index.ToString());
             Xml.Node("Name", Name);
-            Xml.Node("Figure", ((Image)Figure.Clone()).ImageToString());
+            Xml.Node("Figure", Figure != null ? ((Image)Figure.Clone()).ImageToString(): string.Empty)  ;
             Xml.Node(Attributes.asXml(), ROOT);
         }
 

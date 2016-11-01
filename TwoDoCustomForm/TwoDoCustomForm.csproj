@@ -48,6 +48,9 @@
     <Compile Include="CustomForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CustomGridItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CustomGridPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -81,6 +84,10 @@
     <ProjectReference Include="..\TwoDoLanguages\TwoDoLanguages.csproj">
       <Project>{58b7e583-6066-4e73-81cb-07e063a99449}</Project>
       <Name>TwoDoLanguages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwoDoUtils\TwoDoUtils.csproj">
+      <Project>{0bbb21e7-503a-4b4c-b619-300637f9be5b}</Project>
+      <Name>TwoDoUtils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

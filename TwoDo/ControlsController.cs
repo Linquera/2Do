@@ -17,6 +17,7 @@ using TwoDoMap;
 using TwoDoQuest;
 using TwoDoSkill;
 using TwoDoUtils;
+using TwoDoLanguages;
 
 namespace TwoDo
 {
@@ -67,97 +68,93 @@ namespace TwoDo
 
         private ToolStripItem AddSkillMenu()
         {
-            var Skill = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Skills");
-            Skill.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("New Skill", TwoDo.Properties.Resources.sSkill), notImplemented_Click));
-            Skill.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Edit Skill"), notImplemented_Click));
-            Skill.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Add Lore", TwoDo.Properties.Resources.sLore), notImplemented_Click));
-            Skill.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("View Skill List", TwoDo.Properties.Resources.sSkillList), notImplemented_Click));
-            Skill.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Search", TwoDo.Properties.Resources.sSearch), notImplemented_Click));
+            var Skill = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Skill);
+            Skill.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.NewSkill, TwoDo.Properties.Resources.sSkill), notImplemented_Click));
+            Skill.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.EditSkill), notImplemented_Click));
+            Skill.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.AddLore, TwoDo.Properties.Resources.sLore), notImplemented_Click));
+            Skill.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Search, TwoDo.Properties.Resources.sSearch), notImplemented_Click));
             return Skill;
         }
 
         private ToolStripItem AddItensMenu()
         {
-            var Items = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Itens");
-            Items.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("New Item", TwoDo.Properties.Resources.sItem), notImplemented_Click));
-            Items.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Edit Item"), notImplemented_Click));
-            Items.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Add Lore", TwoDo.Properties.Resources.sLore), notImplemented_Click));
-            Items.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("View Item List", TwoDo.Properties.Resources.sSkillList), notImplemented_Click));
-            Items.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Search", TwoDo.Properties.Resources.sSearch), notImplemented_Click));
+            var Items = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Item);
+            Items.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.NewItem, TwoDo.Properties.Resources.sItem), notImplemented_Click));
+            Items.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.EditItem), notImplemented_Click));
+            Items.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.AddLore, TwoDo.Properties.Resources.sLore), notImplemented_Click));
+            Items.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Search, TwoDo.Properties.Resources.sSearch), notImplemented_Click));
             return Items;
         }
 
         private ToolStripItem AddQuestMenu()
         {
-            var Quest = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Quest");
-            Quest.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("New Quest", TwoDo.Properties.Resources.sQuest), notImplemented_Click));
-            Quest.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Edit Quest"), notImplemented_Click));
-            Quest.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Add Lore", TwoDo.Properties.Resources.sLore), notImplemented_Click));
-            Quest.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Check Completation", TwoDo.Properties.Resources.sCompletation), notImplemented_Click));
+            var Quest = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Quest);
+            Quest.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.NewQuest, TwoDo.Properties.Resources.sQuest), notImplemented_Click));
+            Quest.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.EditQuest), notImplemented_Click));
+            Quest.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.AddLore, TwoDo.Properties.Resources.sLore), notImplemented_Click));
+            Quest.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.CheckCompletation, TwoDo.Properties.Resources.sCompletation), notImplemented_Click));
             return Quest;
         }
 
         private ToolStripItem AddLoreMenu()
         {
-            var Lore = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Lore");
-            Lore.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("New Lore", TwoDo.Properties.Resources.sLore), notImplemented_Click));
-            Lore.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("StoryLine", TwoDo.Properties.Resources.sStoryline), notImplemented_Click));
-            Lore.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("New Linkword"), notImplemented_Click));
+            var Lore = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Lore);
+            Lore.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.NewLore, TwoDo.Properties.Resources.sLore), notImplemented_Click));
+            Lore.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Storyline, TwoDo.Properties.Resources.sStoryline), notImplemented_Click));
+            Lore.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.NewLinkWord), notImplemented_Click));
             return Lore;
         }
 
         private ToolStripItem AddConfigMenu()
         {
-            var Config = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Config");
-            Config.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Editor", TwoDo.Properties.Resources.sEditor), notImplemented_Click));
-            Config.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Preferences", TwoDo.Properties.Resources.sConfig), notImplemented_Click));
-            Config.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Password", TwoDo.Properties.Resources.sPassword), notImplemented_Click));
+            var Config = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Options);            
+            Config.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Preferences, TwoDo.Properties.Resources.sConfig), Preferences_click));
+            Config.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Editor, TwoDo.Properties.Resources.sEditor), notImplemented_Click));
             return Config;
-        }
+        }        
 
         private ToolStripItem AddMiscMenu()
         {
-            var Misc = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Misc.");
-            Misc.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Custom Attributes"), notImplemented_Click));
-            Misc.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Custom Elements"), notImplemented_Click));
-            Misc.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Custom Characters Type"), notImplemented_Click));
-            Misc.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Scripts"), notImplemented_Click));
+            var Misc = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Misc);
+            Misc.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.CustomAttributes), notImplemented_Click));
+            Misc.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.ElementTable), notImplemented_Click));
+            Misc.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.CustomCharacterType), notImplemented_Click));
+            Misc.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Scripts), notImplemented_Click));
             return Misc;
         }
 
         private ToolStripItem AddCharacterMenu()
         {
-            var Character = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Character");
-            Character.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("New Character", TwoDo.Properties.Resources.sCharacter), notImplemented_Click));
-            Character.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Set Attributes", TwoDo.Properties.Resources.sAtributes), notImplemented_Click));
-            Character.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Set Sprites", TwoDo.Properties.Resources.sSprite), notImplemented_Click));
-            Character.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Set Animation", TwoDo.Properties.Resources.sAnimation), notImplemented_Click));
-            Character.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Add Lore", TwoDo.Properties.Resources.sLore), notImplemented_Click));
-            Character.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Add Skill", TwoDo.Properties.Resources.sSkill), notImplemented_Click));
+            var Character = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Character);
+            Character.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.NewCharacter, TwoDo.Properties.Resources.sCharacter), notImplemented_Click));
+            Character.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.SetAttributes, TwoDo.Properties.Resources.sAtributes), notImplemented_Click));
+            Character.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.SetSprites, TwoDo.Properties.Resources.sSprite), notImplemented_Click));
+            Character.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.SetAnimation, TwoDo.Properties.Resources.sAnimation), notImplemented_Click));
+            Character.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.AddLore, TwoDo.Properties.Resources.sLore), notImplemented_Click));
+            Character.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.AddSkill, TwoDo.Properties.Resources.sSkill), notImplemented_Click));
             return Character;
         }
 
         private ToolStripItem AddMapMenu()
         {
-            var Map = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Map");
-            Map.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("New Map", TwoDo.Properties.Resources.sMap), notImplemented_Click));
-            Map.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Add Link", TwoDo.Properties.Resources.sMaplink), notImplemented_Click));
-            Map.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Add Characters", TwoDo.Properties.Resources.sCharacter), notImplemented_Click));
-            Map.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Add Itens", TwoDo.Properties.Resources.sItem), notImplemented_Click));
-            Map.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Add Quest", TwoDo.Properties.Resources.sQuest), notImplemented_Click));
-            Map.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Spawn Point", TwoDo.Properties.Resources.sSpawnPoint), notImplemented_Click));
+            var Map = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Map);
+            Map.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.NewMap, TwoDo.Properties.Resources.sMap), notImplemented_Click));
+            Map.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.AddLink, TwoDo.Properties.Resources.sMaplink), notImplemented_Click));
+            Map.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.AddCharacters, TwoDo.Properties.Resources.sCharacter), notImplemented_Click));
+            Map.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.AddItens, TwoDo.Properties.Resources.sItem), notImplemented_Click));
+            Map.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.SpawnPoint, TwoDo.Properties.Resources.sSpawnPoint), notImplemented_Click));
             return Map;
         }
 
         private ToolStripItem AddEditMenu()
         {
-            var Edit = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Edit");
-            Edit.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Undo", TwoDo.Properties.Resources.sUndo), notImplemented_Click));
-            Edit.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Redo", TwoDo.Properties.Resources.sRedo), notImplemented_Click));
-            Edit.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Duplicate", TwoDo.Properties.Resources.sDuplicate), notImplemented_Click));
-            Edit.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Delete", TwoDo.Properties.Resources.sDelete), notImplemented_Click));
-            Edit.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Select All", TwoDo.Properties.Resources.sSelectAll), notImplemented_Click));
-            Edit.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Sort"), notImplemented_Click));
+            var Edit = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Edit);
+            Edit.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Undo, TwoDo.Properties.Resources.sUndo), notImplemented_Click));
+            Edit.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Redo, TwoDo.Properties.Resources.sRedo), notImplemented_Click));
+            Edit.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Duplicate, TwoDo.Properties.Resources.sDuplicate), notImplemented_Click));
+            Edit.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Delete, TwoDo.Properties.Resources.sDelete), notImplemented_Click));
+            Edit.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.SelectAll, TwoDo.Properties.Resources.sSelectAll), notImplemented_Click));
+            Edit.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Sort), notImplemented_Click));
             return Edit;
         }
 
@@ -169,15 +166,15 @@ namespace TwoDo
 
         public TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem AddFileMenu()
         {
-            var File = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("File");
-            File.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("New Project", TwoDo.Properties.Resources.sNewFile), notImplemented_Click));
-            File.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Open Project", TwoDo.Properties.Resources.sOpen), notImplemented_Click));
-            File.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Rename Project"), notImplemented_Click));
-            File.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Save", TwoDo.Properties.Resources.sSave), notImplemented_Click));
-            File.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Save All"), notImplemented_Click));
-            File.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Import", TwoDo.Properties.Resources.sImport), notImplemented_Click));
-            File.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Export", TwoDo.Properties.Resources.sExport), notImplemented_Click));
-            File.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Exit", TwoDo.Properties.Resources.sExit), exit_Click));
+            var File = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.File);
+            File.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.NewProject, TwoDo.Properties.Resources.sNewFile), notImplemented_Click));
+            File.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.OpenProject, TwoDo.Properties.Resources.sOpen), notImplemented_Click));
+            File.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.RenameProject), notImplemented_Click));
+            File.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Save, TwoDo.Properties.Resources.sSave), notImplemented_Click));
+            File.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.SaveAll), notImplemented_Click));
+            File.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Import, TwoDo.Properties.Resources.sImport), notImplemented_Click));
+            File.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Export, TwoDo.Properties.Resources.sExport), notImplemented_Click));
+            File.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Exit, TwoDo.Properties.Resources.sExit), exit_Click));
             return File;
         }
 
@@ -312,12 +309,12 @@ namespace TwoDo
 
         internal void AddSideButtons()
         {
-            mainForm.SideBar.Buttons.Add(setButton("Character", TwoDo.Properties.Resources.bCharacter, CharacterForm_click));
-            mainForm.SideBar.Buttons.Add(setButton("Map", TwoDo.Properties.Resources.bMap, MapForm_click));
-            mainForm.SideBar.Buttons.Add(setButton("Skill", TwoDo.Properties.Resources.bSkill, SkillForm_click));
-            mainForm.SideBar.Buttons.Add(setButton("Item", TwoDo.Properties.Resources.bItem, ItemForm_click));
-            mainForm.SideBar.Buttons.Add(setButton("Quest", TwoDo.Properties.Resources.bQuest, QuestForm_click));
-            mainForm.SideBar.Buttons.Add(setButton("Lore", TwoDo.Properties.Resources.bLore, LoreForm_click));   
+            mainForm.SideBar.Buttons.Add(setButton(Language.Instance.Character, TwoDo.Properties.Resources.bCharacter, CharacterForm_click));
+            mainForm.SideBar.Buttons.Add(setButton(Language.Instance.Map, TwoDo.Properties.Resources.bMap, MapForm_click));
+            mainForm.SideBar.Buttons.Add(setButton(Language.Instance.Skill, TwoDo.Properties.Resources.bSkill, SkillForm_click));
+            mainForm.SideBar.Buttons.Add(setButton(Language.Instance.Item, TwoDo.Properties.Resources.bItem, ItemForm_click));
+            mainForm.SideBar.Buttons.Add(setButton(Language.Instance.Quest, TwoDo.Properties.Resources.bQuest, QuestForm_click));
+            mainForm.SideBar.Buttons.Add(setButton(Language.Instance.Lore, TwoDo.Properties.Resources.bLore, LoreForm_click));   
         }
 
         private void CharacterForm_click(object sender, EventArgs e)
@@ -470,6 +467,12 @@ namespace TwoDo
             BinaryFormatter binary = new BinaryFormatter();
             Stream stream = new MemoryStream(bytes);
             return binary.Deserialize(stream);
+        }
+
+        private void Preferences_click(object sender, EventArgs e)
+        {
+            var OptionForm = new OptionsForm();
+            OptionForm.ShowDialog();
         }
     }
 }

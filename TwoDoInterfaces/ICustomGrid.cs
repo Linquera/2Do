@@ -10,6 +10,7 @@ namespace TwoDoInterfaces
 {
     public interface ICustomGrid
     {
+        List<ICustomGridItem> SelectedItems { get; set; }
         ContextMenuStrip FloatingMenu { get; set; }
         void OpenFloatingMenu(Point e);
     }

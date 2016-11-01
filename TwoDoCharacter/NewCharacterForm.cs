@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TwoDoInterfaces;
+using TwoDoLanguages;
 
 namespace TwoDoCharacter
 {
@@ -18,14 +19,14 @@ namespace TwoDoCharacter
         private OnCloseAction Action;
         private int editedIndex = 0;
         private bool advancedOpen { get; set; }
-        private Size DefaultSize = new Size(495, 225);
+        private Size defaultSize = new Size(495, 225);
         private Size AdvancedSize = new Size(495, 483);
 
         public NewCharacterForm() : base(true, true) 
         {            
-            this.MaximumSize = DefaultSize;
+            this.MaximumSize = defaultSize;
             advancedOpen = false;
-            menuTitle = "New Character";
+            menuTitle = Language.Instance.NewCharacter;
             InitializeComponent();
             setButtonEvents();
             LoadEvents();
@@ -33,7 +34,8 @@ namespace TwoDoCharacter
             Action = OnCloseAction.Add;            
             this.CenterToParent();
             this.ShowInTaskbar = false;
-        }              
+            setLanguage();
+        }                     
 
         public NewCharacterForm(Character Char, int index) : this()
         {
@@ -77,11 +79,27 @@ namespace TwoDoCharacter
             txtVit.KeyPress += NumebersOnly;            
         }
 
+        private void setLanguage()
+        {
+            lblBaseHp.Text = Language.Instance.BaseHP;
+            lblBaseMp.Text = Language.Instance.BaseMP;
+            lblStrength.Text = Language.Instance.Strength;
+            lblDexterity.Text = Language.Instance.Dexterity;
+            lblInteligence.Text = Language.Instance.Inteligence;
+            lblLuck.Text = Language.Instance.Luck;
+            lblMinLevel.Text = Language.Instance.MinLevel;
+            lblVitality.Text = Language.Instance.Vitality;
+            lblName.Text = Language.Instance.Name;
+            btnAdd.Text = Language.Instance.Add;
+            btnAdvanced.Text = Language.Instance.Advanced;
+            btnSelectImg.Text = Language.Instance.SelectImage;
+        } 
+
         private void Advanced_click(object sender, EventArgs e)
         {
             if (advancedOpen)
             {
-                this.MaximumSize = DefaultSize;
+                this.MaximumSize = defaultSize;
                 advancedOpen = false;
             }
             else
@@ -137,7 +155,7 @@ namespace TwoDoCharacter
         {
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
-                dlg.Title = "Select Image";
+                dlg.Title = Language.Instance.SelectImage;
                 dlg.Filter = "Image Files (.jpeg, .png, .jpg, .gif)|*.jpeg;*.png;*.jpg;*.gif";
 
                 if (dlg.ShowDialog() == DialogResult.OK)

@@ -9,6 +9,7 @@ namespace TwoDoInterfaces
 {
     public interface ICustomGridItem : ITwoDoXml
     {
+        bool Selected { get; set; }
         bool inControls();
         void SetToControls();
         void RemoveFromControls();

@@ -14,7 +14,8 @@ namespace TwoDoCustomForm
         public Rectangle ParentRectangle;
         private List<ICustomGridItem> items = new List<ICustomGridItem>();
         public List<ICustomGridItem> Items { get { return items; } }
-        public Size ItensSize = new Size(160,175);
+        public List<ICustomGridItem> SelectedItems { get; set; }
+        public Size ItensSize = new Size(162,177);
         public ContextMenuStrip FloatingMenu { get; set; }
 
         public CustomGridPanel(Rectangle ClientRectangle)
@@ -24,6 +25,7 @@ namespace TwoDoCustomForm
             this.HorizontalScroll.Enabled = false;
             this.HorizontalScroll.Visible = false;
             this.BackColor = Color.FromArgb(70, 70, 70);
+            SelectedItems =  new List<ICustomGridItem>();
             FloatingMenu = new ContextMenuStrip();
             FillParent();           
         }

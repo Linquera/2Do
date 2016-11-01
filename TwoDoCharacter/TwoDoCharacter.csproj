@@ -70,6 +70,10 @@
       <Project>{7a8c69db-8d4b-4548-9405-b7081195d4fd}</Project>
       <Name>TwoDoInterfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TwoDoLanguages\TwoDoLanguages.csproj">
+      <Project>{58b7e583-6066-4e73-81cb-07e063a99449}</Project>
+      <Name>TwoDoLanguages</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TwoDoSkill\TwoDoSkill.csproj">
       <Project>{c781fa6c-e159-42c4-baa8-25cc10b86173}</Project>
       <Name>TwoDoSkill</Name>
