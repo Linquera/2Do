@@ -101,5 +101,24 @@ namespace TwoDoLanguages
         public string SelectImage { get { return "Select Image"; } }
         public string Add { get { return "Add"; } }
         public string Advanced { get { return "Advanced"; } }
+        
+        //Elements
+        public string Neutral { get { return "Neutral"; } }
+        public string Fire { get { return "Fire"; } }
+        public string Water { get { return "Water"; } }
+        public string Earth { get { return "Earth"; } }
+        public string Wind { get { return "Wind"; } }
+        public string Ice { get { return "Ice"; } }
+        public string Thunder { get { return "Thunder"; } }
+        public string Ligth { get { return "Ligth"; } }
+        public string Dark { get { return "Dark"; } }
+        public string Poison { get { return "Poison"; } }
+        public string Ghost { get { return "Ghost"; } }
+        public string Psych { get { return "Psych"; } }
+
+        //Resistances
+        public string Absorb { get { return "Absorb"; } }
+        public string Reflect { get { return "Reflect"; } }
+        public string Immunity { get { return "Immunity"; } }
     }
 }

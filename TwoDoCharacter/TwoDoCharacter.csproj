@@ -53,6 +53,7 @@
     <Compile Include="CharacterGridItem.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Elements.cs" />
     <Compile Include="NewCharacterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +61,11 @@
       <DependentUpon>NewCharacterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TwoDoCustomForm\TwoDoCustomForm.csproj">
@@ -87,6 +93,24 @@
     <EmbeddedResource Include="NewCharacterForm.resx">
       <DependentUpon>NewCharacterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Dark.png" />
+    <Content Include="Resources\Earth.png" />
+    <Content Include="Resources\Fire.png" />
+    <Content Include="Resources\Ghost.png" />
+    <Content Include="Resources\Ice.png" />
+    <Content Include="Resources\Ligth.png" />
+    <Content Include="Resources\Neutral.png" />
+    <Content Include="Resources\Posion.png" />
+    <Content Include="Resources\Psych.png" />
+    <Content Include="Resources\Thunder.png" />
+    <Content Include="Resources\Water.png" />
+    <Content Include="Resources\Wind.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

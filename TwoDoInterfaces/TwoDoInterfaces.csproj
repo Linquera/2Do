@@ -45,6 +45,8 @@
     <Compile Include="ICustomGrid.cs" />
     <Compile Include="ICustomGridHolder.cs" />
     <Compile Include="ICustomGridItem.cs" />
+    <Compile Include="ICustomGridItemObj.cs" />
+    <Compile Include="IElements.cs" />
     <Compile Include="ITwoDoLanguage.cs" />
     <Compile Include="ITwoDoXml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

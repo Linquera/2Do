@@ -25,8 +25,8 @@ namespace TwoDo
         {
             Xml.LoadXml(xml);
             var node = Xml.SelectSingleNode("ProjectSave");
-            Name = node.SelectSingleNode("Name").InnerText;
-            LastSave = DateTime.ParseExact(node.SelectSingleNode("LastSave").InnerText, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+            Name = node.GetNodeStringOrEmpty("Name");
+            LastSave = DateTime.ParseExact(node.GetNodeStringOrEmpty("LastSave"), "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
         }
 
         private void UpdateXml()

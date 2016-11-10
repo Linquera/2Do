@@ -55,6 +55,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CustomGrip.cs" />
+    <Compile Include="CustomImageGridItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CustomMainForm.cs">
       <SubType>Form</SubType>
     </Compile>

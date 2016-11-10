@@ -57,7 +57,7 @@ namespace TwoDoCharacter
         private void Delete_click(object sender, EventArgs e)
         {
             var delete = (CharacterGrid.Items.Find(x => x.GetItemIndex() == currentIndexEdit));
-            if (MessageBox.Show(string.Format("{0} \"{1}\" ?", Language.Instance.Delete, (delete as CharacterGridItem).character.Name), 
+            if (MessageBox.Show(string.Format("{0} \"{1}\" ?", Language.Instance.Delete, (delete as CustomImageGridItem).item.Name), 
                 "", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
                 CharacterGrid.RemoveItem(delete);                
@@ -77,7 +77,7 @@ namespace TwoDoCharacter
 
         private void EditChar()
         {
-            Character edit = (CharacterGrid.Items.Find(x => x.GetItemIndex() == currentIndexEdit) as CharacterGridItem).character;
+            Character edit = ((CharacterGrid.Items.Find(x => x.GetItemIndex() == currentIndexEdit) as CustomImageGridItem).item as Character);
             newCharForm = new NewCharacterForm(edit, currentIndexEdit);
             newCharForm.Save += newCharForm_Save;
             newCharForm.ShowDialog();
@@ -100,12 +100,12 @@ namespace TwoDoCharacter
             var character = (sender as NewCharacterForm).character;
             if ((e as NewCharacterEvents).Action == OnCloseAction.Edit)
             {
-                var griditem = (CharacterGrid.Items.Find(x => x.GetItemIndex() == (e as NewCharacterEvents).editedIndex) as CharacterGridItem);
+                var griditem = (CharacterGrid.Items.Find(x => x.GetItemIndex() == (e as NewCharacterEvents).editedIndex) as CustomImageGridItem);
                 griditem.ReloadDisplay();
             }  
             else if ((e as NewCharacterEvents).Action == OnCloseAction.Add)
             {
-                CharacterGrid.Items.Add(new CharacterGridItem(character, CharacterGrid.Items.Count + 1));                
+                CharacterGrid.Items.Add(new CustomImageGridItem(character, CharacterGrid.Items.Count + 1));                
             }
             RefreshGrid();
         }
@@ -148,8 +148,8 @@ namespace TwoDoCharacter
             var chars = Xml.DocumentElement.SelectNodes("Characters/Character");
             foreach (XmlNode cha in chars)
             {
-                var grid = new CharacterGridItem();
-                grid.LoadFromXml(cha.OuterXml);
+                var grid = new CustomImageGridItem();
+                grid.LoadFromXml(new Character(), cha.OuterXml);
                 CharacterGrid.Items.Add(grid);  
             }       
             CharacterGrid.DrawItens();
@@ -172,7 +172,6 @@ namespace TwoDoCharacter
             currentIndexEdit = index;
             EditChar();
         }
-
 
         public CustomXml asXml()
         {

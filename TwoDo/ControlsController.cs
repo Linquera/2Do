@@ -229,8 +229,8 @@ namespace TwoDo
                     XmlDocument xml = new XmlDocument();
                     xml.LoadXml(Base64Decode((string)ConvertByteArrayToObject(File.ReadAllBytes(op.FileName))));
                     var node = xml.DocumentElement.SelectSingleNode("//TwoDo");
-                    mainForm.ProjectSave.LoadFromXml(node.SelectSingleNode("ProjectSave").OuterXml);
-                    CharacterNode.LoadXml(node.SelectSingleNode("CharacterForm").OuterXml);
+                    mainForm.ProjectSave.LoadFromXml(node.GetNodeXmlOrEmpty("ProjectSave"));
+                    CharacterNode.LoadXml(node.GetNodeXmlOrEmpty("CharacterForm"));
                     //MapNode.LoadXml(node.SelectSingleNode("MapForm").InnerXml);
                     //SkillNode.LoadXml(node.SelectSingleNode("SkillForm").InnerXml);
                     //ItemNode.LoadXml(node.SelectSingleNode("ItemForm").InnerXml);

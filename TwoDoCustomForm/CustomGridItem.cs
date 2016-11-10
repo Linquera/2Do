@@ -129,7 +129,6 @@ namespace TwoDoCustomForm
         {
             component.MouseDown += event_MouseDown;
             ComponentHolder.Controls.Add(component);
-        }
-    
+        }    
     }
 }

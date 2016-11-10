@@ -51,12 +51,56 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnAdvanced = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.TabCharacter = new System.Windows.Forms.TabControl();
+            this.TabElements = new System.Windows.Forms.TabPage();
+            this.cbStrongAttack = new System.Windows.Forms.ComboBox();
+            this.cbBaseAttack = new System.Windows.Forms.ComboBox();
+            this.lblStrongAttack = new System.Windows.Forms.Label();
+            this.gpResistances = new System.Windows.Forms.GroupBox();
+            this.cbPoisonRes = new System.Windows.Forms.ComboBox();
+            this.cbGhostRes = new System.Windows.Forms.ComboBox();
+            this.cbDarkRes = new System.Windows.Forms.ComboBox();
+            this.cbIceRes = new System.Windows.Forms.ComboBox();
+            this.cbPsyRes = new System.Windows.Forms.ComboBox();
+            this.cbLigthRes = new System.Windows.Forms.ComboBox();
+            this.cbEarthRes = new System.Windows.Forms.ComboBox();
+            this.cbNeutralRes = new System.Windows.Forms.ComboBox();
+            this.cbThunderRes = new System.Windows.Forms.ComboBox();
+            this.cbWaterRes = new System.Windows.Forms.ComboBox();
+            this.cbWindRes = new System.Windows.Forms.ComboBox();
+            this.cbFireRes = new System.Windows.Forms.ComboBox();
+            this.pbPoison = new System.Windows.Forms.PictureBox();
+            this.pbNeutral = new System.Windows.Forms.PictureBox();
+            this.pbIce = new System.Windows.Forms.PictureBox();
+            this.pbGhost = new System.Windows.Forms.PictureBox();
+            this.pbPsych = new System.Windows.Forms.PictureBox();
+            this.pbThunder = new System.Windows.Forms.PictureBox();
+            this.pbDark = new System.Windows.Forms.PictureBox();
+            this.pbLigth = new System.Windows.Forms.PictureBox();
+            this.pbEarth = new System.Windows.Forms.PictureBox();
+            this.pbWind = new System.Windows.Forms.PictureBox();
+            this.pbWater = new System.Windows.Forms.PictureBox();
+            this.pbFire = new System.Windows.Forms.PictureBox();
+            this.lblBaseAtk = new System.Windows.Forms.Label();
+            this.lblElementType = new System.Windows.Forms.Label();
+            this.cbBaseElement = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.picChar)).BeginInit();
             this.pnlAttributes.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.TabCharacter.SuspendLayout();
+            this.TabElements.SuspendLayout();
+            this.gpResistances.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPoison)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNeutral)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIce)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGhost)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPsych)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbThunder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDark)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLigth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEarth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWind)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWater)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFire)).BeginInit();
             this.SuspendLayout();
             // 
             // picChar
@@ -284,35 +328,335 @@
             this.btnAdvanced.Text = "Advanced";
             this.btnAdvanced.UseVisualStyleBackColor = true;
             // 
-            // tabControl1
+            // TabCharacter
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(5, 225);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(483, 253);
-            this.tabControl1.TabIndex = 13;
+            this.TabCharacter.Controls.Add(this.TabElements);
+            this.TabCharacter.Location = new System.Drawing.Point(5, 225);
+            this.TabCharacter.Name = "TabCharacter";
+            this.TabCharacter.SelectedIndex = 0;
+            this.TabCharacter.Size = new System.Drawing.Size(483, 217);
+            this.TabCharacter.TabIndex = 13;
             // 
-            // tabPage1
+            // TabElements
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(475, 227);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.TabElements.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.TabElements.Controls.Add(this.cbStrongAttack);
+            this.TabElements.Controls.Add(this.cbBaseElement);
+            this.TabElements.Controls.Add(this.cbBaseAttack);
+            this.TabElements.Controls.Add(this.lblStrongAttack);
+            this.TabElements.Controls.Add(this.gpResistances);
+            this.TabElements.Controls.Add(this.lblElementType);
+            this.TabElements.Controls.Add(this.lblBaseAtk);
+            this.TabElements.Location = new System.Drawing.Point(4, 22);
+            this.TabElements.Name = "TabElements";
+            this.TabElements.Padding = new System.Windows.Forms.Padding(3);
+            this.TabElements.Size = new System.Drawing.Size(475, 191);
+            this.TabElements.TabIndex = 0;
+            this.TabElements.Text = "Elements";
             // 
-            // tabPage2
+            // cbStrongAttack
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(475, 227);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.cbStrongAttack.FormattingEnabled = true;
+            this.cbStrongAttack.Location = new System.Drawing.Point(9, 146);
+            this.cbStrongAttack.Name = "cbStrongAttack";
+            this.cbStrongAttack.Size = new System.Drawing.Size(79, 21);
+            this.cbStrongAttack.TabIndex = 22;
+            // 
+            // cbBaseAttack
+            // 
+            this.cbBaseAttack.FormattingEnabled = true;
+            this.cbBaseAttack.Location = new System.Drawing.Point(9, 85);
+            this.cbBaseAttack.Name = "cbBaseAttack";
+            this.cbBaseAttack.Size = new System.Drawing.Size(79, 21);
+            this.cbBaseAttack.TabIndex = 22;
+            // 
+            // lblStrongAttack
+            // 
+            this.lblStrongAttack.AutoSize = true;
+            this.lblStrongAttack.ForeColor = System.Drawing.Color.White;
+            this.lblStrongAttack.Location = new System.Drawing.Point(6, 126);
+            this.lblStrongAttack.Name = "lblStrongAttack";
+            this.lblStrongAttack.Size = new System.Drawing.Size(72, 13);
+            this.lblStrongAttack.TabIndex = 2;
+            this.lblStrongAttack.Text = "Strong Attack";
+            // 
+            // gpResistances
+            // 
+            this.gpResistances.Controls.Add(this.cbPoisonRes);
+            this.gpResistances.Controls.Add(this.cbGhostRes);
+            this.gpResistances.Controls.Add(this.cbDarkRes);
+            this.gpResistances.Controls.Add(this.cbIceRes);
+            this.gpResistances.Controls.Add(this.cbPsyRes);
+            this.gpResistances.Controls.Add(this.cbLigthRes);
+            this.gpResistances.Controls.Add(this.cbEarthRes);
+            this.gpResistances.Controls.Add(this.cbNeutralRes);
+            this.gpResistances.Controls.Add(this.cbThunderRes);
+            this.gpResistances.Controls.Add(this.cbWaterRes);
+            this.gpResistances.Controls.Add(this.cbWindRes);
+            this.gpResistances.Controls.Add(this.cbFireRes);
+            this.gpResistances.Controls.Add(this.pbPoison);
+            this.gpResistances.Controls.Add(this.pbNeutral);
+            this.gpResistances.Controls.Add(this.pbIce);
+            this.gpResistances.Controls.Add(this.pbGhost);
+            this.gpResistances.Controls.Add(this.pbPsych);
+            this.gpResistances.Controls.Add(this.pbThunder);
+            this.gpResistances.Controls.Add(this.pbDark);
+            this.gpResistances.Controls.Add(this.pbLigth);
+            this.gpResistances.Controls.Add(this.pbEarth);
+            this.gpResistances.Controls.Add(this.pbWind);
+            this.gpResistances.Controls.Add(this.pbWater);
+            this.gpResistances.Controls.Add(this.pbFire);
+            this.gpResistances.ForeColor = System.Drawing.Color.White;
+            this.gpResistances.Location = new System.Drawing.Point(108, 3);
+            this.gpResistances.Name = "gpResistances";
+            this.gpResistances.Size = new System.Drawing.Size(364, 178);
+            this.gpResistances.TabIndex = 1;
+            this.gpResistances.TabStop = false;
+            this.gpResistances.Text = "Resistances";
+            // 
+            // cbPoisonRes
+            // 
+            this.cbPoisonRes.FormattingEnabled = true;
+            this.cbPoisonRes.Location = new System.Drawing.Point(282, 142);
+            this.cbPoisonRes.Name = "cbPoisonRes";
+            this.cbPoisonRes.Size = new System.Drawing.Size(64, 21);
+            this.cbPoisonRes.TabIndex = 23;
+            // 
+            // cbGhostRes
+            // 
+            this.cbGhostRes.FormattingEnabled = true;
+            this.cbGhostRes.Location = new System.Drawing.Point(282, 103);
+            this.cbGhostRes.Name = "cbGhostRes";
+            this.cbGhostRes.Size = new System.Drawing.Size(64, 21);
+            this.cbGhostRes.TabIndex = 23;
+            // 
+            // cbDarkRes
+            // 
+            this.cbDarkRes.FormattingEnabled = true;
+            this.cbDarkRes.Location = new System.Drawing.Point(167, 142);
+            this.cbDarkRes.Name = "cbDarkRes";
+            this.cbDarkRes.Size = new System.Drawing.Size(64, 21);
+            this.cbDarkRes.TabIndex = 23;
+            // 
+            // cbIceRes
+            // 
+            this.cbIceRes.FormattingEnabled = true;
+            this.cbIceRes.Location = new System.Drawing.Point(167, 103);
+            this.cbIceRes.Name = "cbIceRes";
+            this.cbIceRes.Size = new System.Drawing.Size(64, 21);
+            this.cbIceRes.TabIndex = 23;
+            // 
+            // cbPsyRes
+            // 
+            this.cbPsyRes.FormattingEnabled = true;
+            this.cbPsyRes.Location = new System.Drawing.Point(282, 64);
+            this.cbPsyRes.Name = "cbPsyRes";
+            this.cbPsyRes.Size = new System.Drawing.Size(64, 21);
+            this.cbPsyRes.TabIndex = 23;
+            // 
+            // cbLigthRes
+            // 
+            this.cbLigthRes.FormattingEnabled = true;
+            this.cbLigthRes.Location = new System.Drawing.Point(53, 142);
+            this.cbLigthRes.Name = "cbLigthRes";
+            this.cbLigthRes.Size = new System.Drawing.Size(64, 21);
+            this.cbLigthRes.TabIndex = 23;
+            // 
+            // cbEarthRes
+            // 
+            this.cbEarthRes.FormattingEnabled = true;
+            this.cbEarthRes.Location = new System.Drawing.Point(167, 64);
+            this.cbEarthRes.Name = "cbEarthRes";
+            this.cbEarthRes.Size = new System.Drawing.Size(64, 21);
+            this.cbEarthRes.TabIndex = 23;
+            // 
+            // cbNeutralRes
+            // 
+            this.cbNeutralRes.FormattingEnabled = true;
+            this.cbNeutralRes.Location = new System.Drawing.Point(281, 24);
+            this.cbNeutralRes.Name = "cbNeutralRes";
+            this.cbNeutralRes.Size = new System.Drawing.Size(64, 21);
+            this.cbNeutralRes.TabIndex = 23;
+            // 
+            // cbThunderRes
+            // 
+            this.cbThunderRes.FormattingEnabled = true;
+            this.cbThunderRes.Location = new System.Drawing.Point(53, 103);
+            this.cbThunderRes.Name = "cbThunderRes";
+            this.cbThunderRes.Size = new System.Drawing.Size(64, 21);
+            this.cbThunderRes.TabIndex = 23;
+            // 
+            // cbWaterRes
+            // 
+            this.cbWaterRes.FormattingEnabled = true;
+            this.cbWaterRes.Location = new System.Drawing.Point(166, 24);
+            this.cbWaterRes.Name = "cbWaterRes";
+            this.cbWaterRes.Size = new System.Drawing.Size(64, 21);
+            this.cbWaterRes.TabIndex = 23;
+            // 
+            // cbWindRes
+            // 
+            this.cbWindRes.FormattingEnabled = true;
+            this.cbWindRes.Location = new System.Drawing.Point(53, 64);
+            this.cbWindRes.Name = "cbWindRes";
+            this.cbWindRes.Size = new System.Drawing.Size(64, 21);
+            this.cbWindRes.TabIndex = 23;
+            // 
+            // cbFireRes
+            // 
+            this.cbFireRes.FormattingEnabled = true;
+            this.cbFireRes.Location = new System.Drawing.Point(52, 24);
+            this.cbFireRes.Name = "cbFireRes";
+            this.cbFireRes.Size = new System.Drawing.Size(64, 21);
+            this.cbFireRes.TabIndex = 23;
+            // 
+            // pbPoison
+            // 
+            this.pbPoison.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbPoison.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbPoison.Location = new System.Drawing.Point(244, 136);
+            this.pbPoison.Name = "pbPoison";
+            this.pbPoison.Size = new System.Drawing.Size(32, 33);
+            this.pbPoison.TabIndex = 21;
+            this.pbPoison.TabStop = false;
+            // 
+            // pbNeutral
+            // 
+            this.pbNeutral.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbNeutral.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbNeutral.Location = new System.Drawing.Point(244, 19);
+            this.pbNeutral.Name = "pbNeutral";
+            this.pbNeutral.Size = new System.Drawing.Size(32, 33);
+            this.pbNeutral.TabIndex = 20;
+            this.pbNeutral.TabStop = false;
+            // 
+            // pbIce
+            // 
+            this.pbIce.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbIce.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbIce.Location = new System.Drawing.Point(129, 97);
+            this.pbIce.Name = "pbIce";
+            this.pbIce.Size = new System.Drawing.Size(32, 33);
+            this.pbIce.TabIndex = 19;
+            this.pbIce.TabStop = false;
+            // 
+            // pbGhost
+            // 
+            this.pbGhost.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbGhost.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbGhost.Location = new System.Drawing.Point(244, 97);
+            this.pbGhost.Name = "pbGhost";
+            this.pbGhost.Size = new System.Drawing.Size(32, 33);
+            this.pbGhost.TabIndex = 18;
+            this.pbGhost.TabStop = false;
+            // 
+            // pbPsych
+            // 
+            this.pbPsych.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbPsych.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbPsych.Location = new System.Drawing.Point(244, 58);
+            this.pbPsych.Name = "pbPsych";
+            this.pbPsych.Size = new System.Drawing.Size(32, 33);
+            this.pbPsych.TabIndex = 17;
+            this.pbPsych.TabStop = false;
+            // 
+            // pbThunder
+            // 
+            this.pbThunder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbThunder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbThunder.Location = new System.Drawing.Point(15, 97);
+            this.pbThunder.Name = "pbThunder";
+            this.pbThunder.Size = new System.Drawing.Size(32, 33);
+            this.pbThunder.TabIndex = 16;
+            this.pbThunder.TabStop = false;
+            // 
+            // pbDark
+            // 
+            this.pbDark.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbDark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbDark.Location = new System.Drawing.Point(129, 136);
+            this.pbDark.Name = "pbDark";
+            this.pbDark.Size = new System.Drawing.Size(32, 33);
+            this.pbDark.TabIndex = 15;
+            this.pbDark.TabStop = false;
+            // 
+            // pbLigth
+            // 
+            this.pbLigth.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbLigth.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbLigth.Location = new System.Drawing.Point(15, 136);
+            this.pbLigth.Name = "pbLigth";
+            this.pbLigth.Size = new System.Drawing.Size(32, 33);
+            this.pbLigth.TabIndex = 14;
+            this.pbLigth.TabStop = false;
+            // 
+            // pbEarth
+            // 
+            this.pbEarth.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbEarth.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbEarth.Location = new System.Drawing.Point(129, 58);
+            this.pbEarth.Name = "pbEarth";
+            this.pbEarth.Size = new System.Drawing.Size(32, 33);
+            this.pbEarth.TabIndex = 13;
+            this.pbEarth.TabStop = false;
+            // 
+            // pbWind
+            // 
+            this.pbWind.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbWind.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbWind.Location = new System.Drawing.Point(15, 58);
+            this.pbWind.Name = "pbWind";
+            this.pbWind.Size = new System.Drawing.Size(32, 33);
+            this.pbWind.TabIndex = 12;
+            this.pbWind.TabStop = false;
+            // 
+            // pbWater
+            // 
+            this.pbWater.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbWater.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbWater.Location = new System.Drawing.Point(129, 19);
+            this.pbWater.Name = "pbWater";
+            this.pbWater.Size = new System.Drawing.Size(32, 33);
+            this.pbWater.TabIndex = 11;
+            this.pbWater.TabStop = false;
+            // 
+            // pbFire
+            // 
+            this.pbFire.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbFire.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbFire.Location = new System.Drawing.Point(14, 19);
+            this.pbFire.Name = "pbFire";
+            this.pbFire.Size = new System.Drawing.Size(32, 33);
+            this.pbFire.TabIndex = 10;
+            this.pbFire.TabStop = false;
+            // 
+            // lblBaseAtk
+            // 
+            this.lblBaseAtk.AutoSize = true;
+            this.lblBaseAtk.ForeColor = System.Drawing.Color.White;
+            this.lblBaseAtk.Location = new System.Drawing.Point(6, 66);
+            this.lblBaseAtk.Name = "lblBaseAtk";
+            this.lblBaseAtk.Size = new System.Drawing.Size(65, 13);
+            this.lblBaseAtk.TabIndex = 0;
+            this.lblBaseAtk.Text = "Base Attack";
+            // 
+            // lblElementType
+            // 
+            this.lblElementType.AutoSize = true;
+            this.lblElementType.ForeColor = System.Drawing.Color.White;
+            this.lblElementType.Location = new System.Drawing.Point(6, 11);
+            this.lblElementType.Name = "lblElementType";
+            this.lblElementType.Size = new System.Drawing.Size(45, 13);
+            this.lblElementType.TabIndex = 0;
+            this.lblElementType.Text = "Element";
+            // 
+            // cbBaseElement
+            // 
+            this.cbBaseElement.FormattingEnabled = true;
+            this.cbBaseElement.Location = new System.Drawing.Point(9, 30);
+            this.cbBaseElement.Name = "cbBaseElement";
+            this.cbBaseElement.Size = new System.Drawing.Size(79, 21);
+            this.cbBaseElement.TabIndex = 22;
             // 
             // NewCharacterForm
             // 
@@ -320,7 +664,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(500, 500);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.TabCharacter);
             this.Controls.Add(this.btnAdvanced);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtName);
@@ -333,7 +677,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.picChar)).EndInit();
             this.pnlAttributes.ResumeLayout(false);
             this.pnlAttributes.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.TabCharacter.ResumeLayout(false);
+            this.TabElements.ResumeLayout(false);
+            this.TabElements.PerformLayout();
+            this.gpResistances.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbPoison)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNeutral)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIce)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGhost)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPsych)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbThunder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDark)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLigth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEarth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWind)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWater)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFire)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -364,9 +723,39 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnAdvanced;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabControl TabCharacter;
+        private System.Windows.Forms.TabPage TabElements;
+        private System.Windows.Forms.Label lblBaseAtk;
+        private System.Windows.Forms.Label lblStrongAttack;
+        private System.Windows.Forms.GroupBox gpResistances;
+        private System.Windows.Forms.PictureBox pbPoison;
+        private System.Windows.Forms.PictureBox pbNeutral;
+        private System.Windows.Forms.PictureBox pbIce;
+        private System.Windows.Forms.PictureBox pbGhost;
+        private System.Windows.Forms.PictureBox pbPsych;
+        private System.Windows.Forms.PictureBox pbThunder;
+        private System.Windows.Forms.PictureBox pbDark;
+        private System.Windows.Forms.PictureBox pbLigth;
+        private System.Windows.Forms.PictureBox pbEarth;
+        private System.Windows.Forms.PictureBox pbWind;
+        private System.Windows.Forms.PictureBox pbWater;
+        private System.Windows.Forms.PictureBox pbFire;
+        private System.Windows.Forms.ComboBox cbStrongAttack;
+        private System.Windows.Forms.ComboBox cbBaseAttack;
+        private System.Windows.Forms.ComboBox cbPoisonRes;
+        private System.Windows.Forms.ComboBox cbGhostRes;
+        private System.Windows.Forms.ComboBox cbDarkRes;
+        private System.Windows.Forms.ComboBox cbIceRes;
+        private System.Windows.Forms.ComboBox cbPsyRes;
+        private System.Windows.Forms.ComboBox cbLigthRes;
+        private System.Windows.Forms.ComboBox cbEarthRes;
+        private System.Windows.Forms.ComboBox cbNeutralRes;
+        private System.Windows.Forms.ComboBox cbThunderRes;
+        private System.Windows.Forms.ComboBox cbWaterRes;
+        private System.Windows.Forms.ComboBox cbWindRes;
+        private System.Windows.Forms.ComboBox cbFireRes;
+        private System.Windows.Forms.ComboBox cbBaseElement;
+        private System.Windows.Forms.Label lblElementType;
 
     }
 }

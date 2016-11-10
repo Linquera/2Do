@@ -10,6 +10,7 @@ namespace TwoDoCharacter
 {
     public class Attributes : IAttributes, ITwoDoXml
     {
+        private string ROOT = "Attributes";
         private CustomXml Xml { get; set; }
         public int Strength { get; set; }
         public int Inteligence { get; set; }
@@ -22,7 +23,7 @@ namespace TwoDoCharacter
 
         public Attributes()
         {
-            Xml = new CustomXml("Attributes");
+            Xml = new CustomXml(ROOT);
             Strength = 1;
             Inteligence = 1;
             Dexterity = 1;
@@ -35,20 +36,18 @@ namespace TwoDoCharacter
 
         public void LoadFromXml(string xml)
         {
+            if (string.IsNullOrEmpty(xml)) return;
             int aux = 0;
             Xml.LoadXml(xml);
-            var nodes = Xml.SelectNodes("Attributes");
-            foreach (XmlNode node in nodes)
-            {
-                Strength = int.TryParse(node.SelectSingleNode("Strength").InnerText, out aux) ? aux : 1;
-                Inteligence = int.TryParse(node.SelectSingleNode("Inteligence").InnerText, out aux) ? aux : 1;
-                Dexterity = int.TryParse(node.SelectSingleNode("Dexterity").InnerText, out aux) ? aux : 1;
-                Vitality = int.TryParse(node.SelectSingleNode("Vitality").InnerText, out aux) ? aux : 1;
-                Luck = int.TryParse(node.SelectSingleNode("Luck").InnerText, out aux) ? aux : 1;
-                MinLevel = int.TryParse(node.SelectSingleNode("MinLevel").InnerText, out aux) ? aux : 1;
-                BaseHP = int.TryParse(node.SelectSingleNode("BaseHP").InnerText, out aux) ? aux : 100;
-                BaseMP = int.TryParse(node.SelectSingleNode("BaseMP").InnerText, out aux) ? aux : 100;
-            }
+            var node = Xml.SelectSingleNode(ROOT);
+            Strength = int.TryParse(node.GetNodeStringOrEmpty("Strength"), out aux) ? aux : 1;
+            Inteligence = int.TryParse(node.GetNodeStringOrEmpty("Inteligence"), out aux) ? aux : 1;
+            Dexterity = int.TryParse(node.GetNodeStringOrEmpty("Dexterity"), out aux) ? aux : 1;
+            Vitality = int.TryParse(node.GetNodeStringOrEmpty("Vitality"), out aux) ? aux : 1;
+            Luck = int.TryParse(node.GetNodeStringOrEmpty("Luck"), out aux) ? aux : 1;
+            MinLevel = int.TryParse(node.GetNodeStringOrEmpty("MinLevel"), out aux) ? aux : 1;
+            BaseHP = int.TryParse(node.GetNodeStringOrEmpty("BaseHP"), out aux) ? aux : 100;
+            BaseMP = int.TryParse(node.GetNodeStringOrEmpty("BaseMP"), out aux) ? aux : 100;            
         }        
 
         private void UpdateXml()

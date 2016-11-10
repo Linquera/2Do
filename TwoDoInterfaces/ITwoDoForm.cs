@@ -8,7 +8,6 @@ namespace TwoDoInterfaces
 {
     public enum MdiFormType { None, Character, Map, Skill, Items, Quest, Lore }
     public enum OnCloseAction { Add, Edit, None }
-    
     public interface ITwoDoMdiForm
     {
         event EventHandler MdiExitClick;        

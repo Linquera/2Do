@@ -12,7 +12,7 @@ using TwoDoUtils;
 
 namespace TwoDoCharacter
 {
-    public class Character : ITwoDoXml
+    public class Character : ICustomGridItemObj
     {
         private string ROOT = "Character";
         public int Index { get; set; }
@@ -20,6 +20,7 @@ namespace TwoDoCharacter
         public Image Figure { get; set; }
         CustomXml Xml { get; set; }
         public Attributes Attributes { get; set; }
+        public Elements Elements { get; set; }
         //public List<Animation> Animations = new List<Animation>(); 
         //public List<Skill> Skills = new List<Skill>();
 
@@ -27,25 +28,28 @@ namespace TwoDoCharacter
         {
             Xml = new CustomXml(ROOT);
             Attributes = new Attributes();
+            Elements = new Elements();
         }
 
         public void LoadFromXml(string xml)
         {
             int aux;
             Xml.LoadXml(xml);
-            var node = Xml.SelectSingleNode(ROOT);            
-            Index = int.TryParse(node.SelectSingleNode("Index").InnerText, out aux) ? aux : 0;
-            Name = node.SelectSingleNode("Name").InnerText;
-            Figure = Figure.LoadFromString(node.SelectSingleNode("Figure").InnerText);                
-            Attributes.LoadFromXml(node.SelectSingleNode("Attributes").OuterXml);       
+            var node = Xml.SelectSingleNode(ROOT);
+            Index = int.TryParse(node.GetNodeStringOrEmpty("Index"), out aux) ? aux : 0;
+            Name = node.GetNodeStringOrEmpty("Name");
+            Figure = Figure.LoadFromString(node.GetNodeStringOrEmpty("Figure"));
+            Attributes.LoadFromXml(node.GetNodeXmlOrEmpty("Attributes"));
+            Elements.LoadFromXml(node.GetNodeXmlOrEmpty("Elements"));
         }
 
         private void UpdateXml()
         {            
             Xml.Node("Index", Index.ToString());
             Xml.Node("Name", Name);
-            Xml.Node("Figure", Figure != null ? ((Image)Figure.Clone()).ImageToString(): string.Empty)  ;
+            Xml.Node("Figure", Figure != null ? ((Image)Figure.Clone()).ImageToString(): string.Empty);
             Xml.Node(Attributes.asXml(), ROOT);
+            Xml.Node(Elements.asXml(), ROOT);
         }
 
         public string ToXml()

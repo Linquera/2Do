@@ -100,5 +100,24 @@ namespace TwoDoInterfaces
         string SelectImage { get; }
         string Add { get; }
         string Advanced { get; }
+
+        //Elements
+        string Neutral { get; }
+        string Fire { get; }
+        string Water { get; }
+        string Earth { get; }
+        string Wind { get; }
+        string Ice { get; }
+        string Thunder { get; }
+        string Ligth { get; }
+        string Dark { get; }
+        string Poison { get; }
+        string Ghost { get; }
+        string Psych { get; }
+
+        //Resistances
+        string Absorb { get; }
+        string Reflect { get; }
+        string Immunity { get; }
     }
 }

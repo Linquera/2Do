@@ -143,5 +143,24 @@ namespace TwoDoLanguages
         public string SelectImage { get { return instance.SelectImage; } }
         public string Add { get { return instance.Add; } }
         public string Advanced { get { return instance.Advanced; } }
+
+        //Elements
+        public string Neutral { get { return instance.Neutral; } }
+        public string Fire { get { return instance.Fire; } }
+        public string Water { get { return instance.Water; } }
+        public string Earth { get { return instance.Earth; } }
+        public string Wind { get { return instance.Wind; } }
+        public string Ice { get { return instance.Ice; } }
+        public string Thunder { get { return instance.Thunder; } }
+        public string Ligth { get { return instance.Ligth; } }
+        public string Dark { get { return instance.Dark; } }
+        public string Poison { get { return instance.Poison; } }
+        public string Ghost { get { return instance.Ghost; } }
+        public string Psych { get { return instance.Psych; } }
+
+        //Resistances
+        public string Absorb { get { return instance.Absorb; } }
+        public string Reflect { get { return instance.Reflect; } }
+        public string Immunity { get { return instance.Immunity; } }
     }
 }

@@ -5,10 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace TwoDoUtils
 {
-    public static class ImageUtils
+    public static class Extensions
     {
         public static string ImageToString(this Image value)
         {
@@ -42,6 +44,33 @@ namespace TwoDoUtils
             }
             else
                 return value;
+        }
+
+        public static T GetAttributeOfType<T>(this Enum enumVal) where T : System.Attribute
+        {
+            var type = enumVal.GetType();
+            var memInfo = type.GetMember(enumVal.ToString());
+            var attributes = memInfo[0].GetCustomAttributes(typeof(T), false);
+            return (attributes.Length > 0) ? (T)attributes[0] : null;
+        }
+        
+        public static IEnumerable<T> GetValues<T>()
+        {
+            return Enum.GetValues(typeof(T)).Cast<T>();
+        }
+
+        public static string GetNodeStringOrEmpty(this XmlNode node, string nodeName)
+        {
+            var _node = node.SelectSingleNode(nodeName);
+            if (_node == null) return string.Empty;
+            else return _node.InnerText;
+        }
+
+        public static string GetNodeXmlOrEmpty(this XmlNode node, string nodeName)
+        {
+            var _node = node.SelectSingleNode(nodeName);
+            if (_node == null) return string.Empty;
+            else return _node.OuterXml;
         }
     }
 }
