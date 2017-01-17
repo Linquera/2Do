@@ -162,5 +162,33 @@ namespace TwoDoLanguages
         public string Absorb { get { return instance.Absorb; } }
         public string Reflect { get { return instance.Reflect; } }
         public string Immunity { get { return instance.Immunity; } }
+
+        //Item Categories
+        public string Loot { get { return instance.Loot; } }
+        public string Equip { get { return instance.Equip; } }
+        public string Material { get { return instance.Material; } }
+        public string Consumable { get { return instance.Consumable; } }
+        public string Collectable { get { return instance.Collectable; } }
+        public string Key { get { return instance.Key; } }
+
+        //Obtain
+        public string Category { get { return instance.Category; } }
+        public string HowToObtain { get { return instance.HowToObtain; } }
+        public string Craft { get { return instance.Craft; } }
+        public string Event { get { return instance.Event; } }
+        public string LootOnGround { get { return instance.LootOnGround; } }
+        public string MonsterDrop { get { return instance.MonsterDrop; } }
+        public string NotObtainable { get { return instance.NotObtainable; } }
+        public string Story { get { return instance.Story; } }
+        public string TreasureBox { get { return instance.TreasureBox; } }
+
+        //Formulas
+        public string CalcFormula { get { return instance.CalcFormula; } }
+        public string MinPAtk { get { return instance.MinPAtk; } }
+        public string MaxPAtk { get { return instance.MaxPAtk; } }
+        public string MinMAtk { get { return instance.MinMAtk; } }
+        public string MaxMAtk { get { return instance.MaxMAtk; } }
+        public string PDamage { get { return instance.PDamage; } }
+        public string MDamage { get { return instance.MDamage; } }
     }
 }

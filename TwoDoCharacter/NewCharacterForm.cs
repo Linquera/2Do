@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TwoDoInterfaces;
 using TwoDoLanguages;
 using TwoDoUtils;
+using TwoDoInterfaces;
 
 namespace TwoDoCharacter
 {
@@ -44,6 +44,14 @@ namespace TwoDoCharacter
             FillComboBox();
         }
 
+        public NewCharacterForm(Character Char, int index) : this()
+        {
+            character = Char;
+            LoadFormInfo();
+            Action = OnCloseAction.Edit;
+            editedIndex = index;
+        }
+
         private void FillComboBox()
         {
             FillComboBoxWithElementEnum(cbBaseAttack);
@@ -68,7 +76,7 @@ namespace TwoDoCharacter
             var resistances = Enum.GetValues(typeof(ResistanceType)).Cast<ResistanceType>();
             foreach (var resistance in resistances)
             {
-                cbox.Items.Add(Elements.GetResistanceDescription(resistance));
+                cbox.Items.Add(resistance.GetDescription());
             }
             cbox.SelectedIndex = (int)ResistanceType.Neutral;
         }
@@ -79,7 +87,7 @@ namespace TwoDoCharacter
             var elements = Enum.GetValues(typeof(ElementTypes)).Cast<ElementTypes>();
             foreach (var element in elements)
             {
-                cbox.Items.Add(Elements.GetElementDescription(element));
+                cbox.Items.Add(element.GetDescription());
             }
             cbox.SelectedIndex = (int)ElementTypes.Neutral;
         }        
@@ -143,15 +151,7 @@ namespace TwoDoCharacter
         {
             picBox.SizeMode = PictureBoxSizeMode.StretchImage;
             picBox.BorderStyle = BorderStyle.None;            
-        }                     
-
-        public NewCharacterForm(Character Char, int index) : this()
-        {
-            character = Char;            
-            LoadFormInfo();
-            Action = OnCloseAction.Edit;
-            editedIndex = index;
-        }
+        }                  
 
         private void setButtonEvents()
         {
@@ -164,16 +164,6 @@ namespace TwoDoCharacter
             btnSelectImg.Click += SelectImg_click;
             setButtonsConfig(btnSelectImg);
         }  
-
-        private void setButtonsConfig(Button button)
-        {
-            button.FlatStyle = FlatStyle.Flat;
-            button.FlatAppearance.BorderSize = 1;
-            button.FlatAppearance.BorderColor = Color.Black;
-            button.FlatAppearance.MouseOverBackColor = Color.FromArgb(150, 150, 150);
-            button.BackColor = Color.FromArgb(190, 190, 190);
-            button.ForeColor = Color.Black;     
-        }
 
         private void LoadEvents()
         {            

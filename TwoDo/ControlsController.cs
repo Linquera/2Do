@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using TwoDoCalcs;
 using TwoDoCharacter;
 using TwoDoCustomForm;
 using TwoDoInterfaces;
@@ -47,7 +48,7 @@ namespace TwoDo
             CharacterNode = new CustomXml(CharacterForm.Root);
             //MapNode = new CustomXml("");
             //SkillNode = new CustomXml("");
-            //ItemNode = new CustomXml("");
+            ItemNode = new CustomXml(ItemForm.Root);
             //QuestNode = new CustomXml("");
             //LoreNode = new CustomXml("");
         }
@@ -109,9 +110,10 @@ namespace TwoDo
         {
             var Config = new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Options);            
             Config.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Preferences, TwoDo.Properties.Resources.sConfig), Preferences_click));
+            Config.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem("Formula", null), Formula_click));
             Config.DropDownItems.Add(VinculaEvento(new TwoDoCustomForm.CustomMenuStrip.CustomMenuStripItem(Language.Instance.Editor, TwoDo.Properties.Resources.sEditor), notImplemented_Click));
             return Config;
-        }        
+        }
 
         private ToolStripItem AddMiscMenu()
         {
@@ -233,7 +235,7 @@ namespace TwoDo
                     CharacterNode.LoadXml(node.GetNodeXmlOrEmpty("CharacterForm"));
                     //MapNode.LoadXml(node.SelectSingleNode("MapForm").InnerXml);
                     //SkillNode.LoadXml(node.SelectSingleNode("SkillForm").InnerXml);
-                    //ItemNode.LoadXml(node.SelectSingleNode("ItemForm").InnerXml);
+                    ItemNode.LoadXml(node.GetNodeXmlOrEmpty("ItemForm"));
                     //QuestNode.LoadXml(node.SelectSingleNode("QuestForm").InnerXml);
                     //LoreNode.LoadXml(node.SelectSingleNode("LoreForm").InnerXml);
 
@@ -249,8 +251,8 @@ namespace TwoDo
         private void ReloadOpenForms()
         {
             if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.OuterXml); }
-            /*if (mainForm.MapForm != null)  { mainForm.MapForm.LoadFromXml(CharacterNode.InnerXml); }
-            if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
+            if (mainForm.ItemForm != null) { mainForm.ItemForm.LoadFromXml(ItemNode.OuterXml); }
+            /*if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
             if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
             if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
             if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
@@ -281,6 +283,7 @@ namespace TwoDo
             CustomXml xml = new CustomXml("TwoDo");
             xml.Node(mainForm.ProjectSave.asXml());
             xml.Node(CharacterNode); //mainForm.CharForm.asXml());
+            xml.Node(ItemNode);
             File.WriteAllBytes(mainForm.ProjectSave.Name, ConvertObjectToByteArray(Base64Encode(xml.InnerXml)));
             
             //for teste purpose
@@ -290,8 +293,8 @@ namespace TwoDo
         private void UpdateXmlNodes()
         {
             if (mainForm.CharForm != null) { CharacterNode = mainForm.CharForm.asXml(); }
-            /*if (mainForm.MapForm != null)  { mainForm.MapForm.LoadFromXml(CharacterNode.InnerXml); }
-            if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
+            if (mainForm.ItemForm != null) { ItemNode = mainForm.ItemForm.asXml(); }
+            /*if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
             if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
             if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
             if (mainForm.CharForm != null) { mainForm.CharForm.LoadFromXml(CharacterNode.InnerXml); }
@@ -375,6 +378,7 @@ namespace TwoDo
             if (mainForm.ItemForm == null)
             {
                 mainForm.ItemForm = new ItemForm(true);
+                if (ItemNode != null) { mainForm.ItemForm.LoadFromXml(ItemNode.OuterXml); }
                 OpenMdiForm(mainForm.ItemForm);
             }
             else if (!mainForm.ItemForm.Focused)
@@ -435,7 +439,10 @@ namespace TwoDo
                         break;
                     case MdiFormType.Map: mainForm.MapForm = null; break;
                     case MdiFormType.Skill: mainForm.SkillForm = null; break;
-                    case MdiFormType.Items: mainForm.ItemForm = null; break;
+                    case MdiFormType.Items:
+                        ItemNode = mainForm.ItemForm.asXml();
+                        mainForm.ItemForm = null;
+                        break;
                     case MdiFormType.Quest: mainForm.QuestForm = null; break;
                     case MdiFormType.Lore: mainForm.LoreForm = null; break;
                 }
@@ -473,6 +480,12 @@ namespace TwoDo
         {
             var OptionForm = new OptionsForm();
             OptionForm.ShowDialog();
+        }
+
+        private void Formula_click(object sender, EventArgs e)
+        {
+            var FormulaForm = new FormulaForm();
+            FormulaForm.ShowDialog();
         }
     }
 }

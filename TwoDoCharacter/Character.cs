@@ -54,8 +54,7 @@ namespace TwoDoCharacter
 
         public string ToXml()
         {        
-            UpdateXml();
-            return Xml.OuterXml;
+            return asXml().OuterXml;
         }
 
         public CustomXml asXml()

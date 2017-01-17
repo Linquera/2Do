@@ -119,5 +119,34 @@ namespace TwoDoInterfaces
         string Absorb { get; }
         string Reflect { get; }
         string Immunity { get; }
+
+        //item Obtain
+        string Category { get; }
+        string HowToObtain { get; }
+        string Craft { get; }
+        string Event { get; }
+        string LootOnGround { get; }
+        string MonsterDrop { get; }
+        string NotObtainable { get; }
+        string Story { get; }
+        string TreasureBox { get; }
+
+        //Item Categories
+        string Loot { get; }
+        string Equip { get; }
+        string Material { get; }
+        string Consumable { get; }
+        string Collectable { get; }
+        string Key { get; }
+
+        //Formulas
+        string CalcFormula { get; }
+        string MinPAtk { get; }
+        string MaxPAtk { get; }
+        string MinMAtk { get; }
+        string MaxMAtk { get; }
+        string PDamage { get; }
+        string MDamage { get; }
+            
     }
 }

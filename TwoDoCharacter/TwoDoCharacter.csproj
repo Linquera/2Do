@@ -50,9 +50,6 @@
     <Compile Include="CharacterForm.Designer.cs">
       <DependentUpon>CharacterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CharacterGridItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Elements.cs" />
     <Compile Include="NewCharacterForm.cs">
       <SubType>Form</SubType>

@@ -45,6 +45,7 @@ namespace TwoDoCustomForm
         private const uint SWP_HIDEWINDOW = 0x0080;
         private const uint SWP_NOCOPYBITS = 0x0100;
         private const uint SWP_NOOWNERZORDER = 0x0200;
+        private Label lblName;
         private const uint SWP_NOSENDCHANGING = 0x0400;
 
         public bool SetBevel(bool show)
@@ -116,11 +117,26 @@ namespace TwoDoCustomForm
 
         private void InitializeComponent()
         {
+            this.lblName = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(17, 19);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(35, 13);
+            this.lblName.TabIndex = 0;
+            this.lblName.Text = "Name";
+            // 
+            // CustomForm
+            // 
             this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Name = "TwoForm";
+            this.Controls.Add(this.lblName);
+            this.Name = "CustomForm";
             this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         protected override void OnResize(EventArgs e)
@@ -368,6 +384,16 @@ namespace TwoDoCustomForm
             {
                 e.Handled = true;
             }
+        }
+
+        public void setButtonsConfig(Button button)
+        {
+            button.FlatStyle = FlatStyle.Flat;
+            button.FlatAppearance.BorderSize = 1;
+            button.FlatAppearance.BorderColor = Color.Black;
+            button.FlatAppearance.MouseOverBackColor = Color.FromArgb(150, 150, 150);
+            button.BackColor = Color.FromArgb(190, 190, 190);
+            button.ForeColor = Color.Black;
         }
     }
 }

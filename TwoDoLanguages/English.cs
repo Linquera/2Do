@@ -120,5 +120,33 @@ namespace TwoDoLanguages
         public string Absorb { get { return "Absorb"; } }
         public string Reflect { get { return "Reflect"; } }
         public string Immunity { get { return "Immunity"; } }
+
+        //Item Categories
+        public string Loot { get { return "Loot"; } }
+        public string Equip { get { return "Equip"; } }
+        public string Material { get { return "Material"; } }
+        public string Consumable { get { return "Consumable"; } }
+        public string Collectable { get { return "Collectable"; } }
+        public string Key { get { return "Key"; } }
+
+        //obtain
+        public string Category { get { return "Category"; } }
+        public string HowToObtain { get { return "How To Obtain"; } }
+        public string Craft { get { return "Craft"; } }
+        public string Event { get { return "Event"; } }
+        public string LootOnGround { get { return "Loot On Ground"; } }
+        public string MonsterDrop { get { return "Monster Drop"; } }
+        public string NotObtainable { get { return "Not Obtainable"; } }
+        public string Story { get { return "Story"; } }
+        public string TreasureBox { get { return "Treasure Box"; } }
+
+        //Formulas
+        public string CalcFormula{ get { return "Calculation Formulas"; } }
+        public string MinPAtk { get { return "Min Physical Attack"; } }
+        public string MaxPAtk { get { return "Max Physical Attack"; } }
+        public string MinMAtk { get { return "Min Magical Attack"; } }
+        public string MaxMAtk { get { return "Max Magical Attack"; } }
+        public string PDamage { get { return "Physical Damage"; } }
+        public string MDamage { get { return "Magical Damage"; } }
     }
 }

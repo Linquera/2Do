@@ -48,6 +48,12 @@
     <Compile Include="CustomForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CustomFormulaEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomFormulaEditor.Designer.cs">
+      <DependentUpon>CustomFormulaEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomGridItem.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -74,6 +80,9 @@
   <ItemGroup>
     <EmbeddedResource Include="CustomForm.resx">
       <DependentUpon>CustomForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomFormulaEditor.resx">
+      <DependentUpon>CustomFormulaEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomMainForm.resx">
       <DependentUpon>CustomMainForm.cs</DependentUpon>

@@ -90,6 +90,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TwoDoCalcs\TwoDoCalcs.csproj">
+      <Project>{3c409e0d-8450-420d-b545-c8455fd4e01c}</Project>
+      <Name>TwoDoCalcs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TwoDoCharacter\TwoDoCharacter.csproj">
       <Project>{255630c1-d73e-409b-b4a6-9aae703eba9a}</Project>
       <Name>TwoDoCharacter</Name>

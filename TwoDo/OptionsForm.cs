@@ -78,16 +78,6 @@ namespace TwoDo
             gbLanguage.Text = Language.Instance._Language;
         }
 
-        private void setButtonsConfig(Button button)
-        {
-            button.FlatStyle = FlatStyle.Flat;
-            button.FlatAppearance.BorderSize = 1;
-            button.FlatAppearance.BorderColor = Color.Black;
-            button.FlatAppearance.MouseOverBackColor = Color.FromArgb(150, 150, 150);
-            button.BackColor = Color.FromArgb(190, 190, 190);
-            button.ForeColor = Color.Black;
-        }
-
         public override void onExitclick()
         {
             this.Close();

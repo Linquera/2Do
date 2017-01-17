@@ -33,7 +33,7 @@ namespace TwoDoItem
             MainMenuBar.BarGradientColorStart = Color.FromArgb(70, 70, 70);
             MainMenuBar.BarGradientColorEnd = Color.FromArgb(70, 70, 70);
             Xml = new CustomXml(Root);
-            menuTitle = Language.Instance.Character;
+            menuTitle = Language.Instance.Item;
             ItemGrid = new CustomGridPanel(this.ClientRectangle);
             ItemGrid.Padding = new Padding(1, 1, 0, 30);
             setFloatMenuConfig();
@@ -42,7 +42,7 @@ namespace TwoDoItem
 
         private void setFloatMenuConfig()
         {
-            ItemGrid.FloatingMenu.Items.Add(new ToolStripMenuItem(Language.Instance.NewCharacter, null, newItem_click));
+            ItemGrid.FloatingMenu.Items.Add(new ToolStripMenuItem(Language.Instance.NewItem, null, newItem_click));
             editMenuItem = new ToolStripMenuItem(Language.Instance.Edit, null, Edit_click);
             editMenuItem.Visible = false;
             ItemGrid.FloatingMenu.Items.Add(editMenuItem);
@@ -73,6 +73,7 @@ namespace TwoDoItem
         {
             EditItem();
         }
+
         private void EditItem()
         {
             Item edit = ((ItemGrid.Items.Find(x => x.GetItemIndex() == currentIndexEdit) as CustomImageGridItem).item as Item);

@@ -54,6 +54,7 @@
             this.TabCharacter = new System.Windows.Forms.TabControl();
             this.TabElements = new System.Windows.Forms.TabPage();
             this.cbStrongAttack = new System.Windows.Forms.ComboBox();
+            this.cbBaseElement = new System.Windows.Forms.ComboBox();
             this.cbBaseAttack = new System.Windows.Forms.ComboBox();
             this.lblStrongAttack = new System.Windows.Forms.Label();
             this.gpResistances = new System.Windows.Forms.GroupBox();
@@ -81,9 +82,8 @@
             this.pbWind = new System.Windows.Forms.PictureBox();
             this.pbWater = new System.Windows.Forms.PictureBox();
             this.pbFire = new System.Windows.Forms.PictureBox();
-            this.lblBaseAtk = new System.Windows.Forms.Label();
             this.lblElementType = new System.Windows.Forms.Label();
-            this.cbBaseElement = new System.Windows.Forms.ComboBox();
+            this.lblBaseAtk = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picChar)).BeginInit();
             this.pnlAttributes.SuspendLayout();
             this.TabCharacter.SuspendLayout();
@@ -331,7 +331,7 @@
             // TabCharacter
             // 
             this.TabCharacter.Controls.Add(this.TabElements);
-            this.TabCharacter.Location = new System.Drawing.Point(5, 225);
+            this.TabCharacter.Location = new System.Drawing.Point(5, 224);
             this.TabCharacter.Name = "TabCharacter";
             this.TabCharacter.SelectedIndex = 0;
             this.TabCharacter.Size = new System.Drawing.Size(483, 217);
@@ -361,6 +361,14 @@
             this.cbStrongAttack.Name = "cbStrongAttack";
             this.cbStrongAttack.Size = new System.Drawing.Size(79, 21);
             this.cbStrongAttack.TabIndex = 22;
+            // 
+            // cbBaseElement
+            // 
+            this.cbBaseElement.FormattingEnabled = true;
+            this.cbBaseElement.Location = new System.Drawing.Point(9, 30);
+            this.cbBaseElement.Name = "cbBaseElement";
+            this.cbBaseElement.Size = new System.Drawing.Size(79, 21);
+            this.cbBaseElement.TabIndex = 22;
             // 
             // cbBaseAttack
             // 
@@ -630,16 +638,6 @@
             this.pbFire.TabIndex = 10;
             this.pbFire.TabStop = false;
             // 
-            // lblBaseAtk
-            // 
-            this.lblBaseAtk.AutoSize = true;
-            this.lblBaseAtk.ForeColor = System.Drawing.Color.White;
-            this.lblBaseAtk.Location = new System.Drawing.Point(6, 66);
-            this.lblBaseAtk.Name = "lblBaseAtk";
-            this.lblBaseAtk.Size = new System.Drawing.Size(65, 13);
-            this.lblBaseAtk.TabIndex = 0;
-            this.lblBaseAtk.Text = "Base Attack";
-            // 
             // lblElementType
             // 
             this.lblElementType.AutoSize = true;
@@ -650,13 +648,15 @@
             this.lblElementType.TabIndex = 0;
             this.lblElementType.Text = "Element";
             // 
-            // cbBaseElement
+            // lblBaseAtk
             // 
-            this.cbBaseElement.FormattingEnabled = true;
-            this.cbBaseElement.Location = new System.Drawing.Point(9, 30);
-            this.cbBaseElement.Name = "cbBaseElement";
-            this.cbBaseElement.Size = new System.Drawing.Size(79, 21);
-            this.cbBaseElement.TabIndex = 22;
+            this.lblBaseAtk.AutoSize = true;
+            this.lblBaseAtk.ForeColor = System.Drawing.Color.White;
+            this.lblBaseAtk.Location = new System.Drawing.Point(6, 66);
+            this.lblBaseAtk.Name = "lblBaseAtk";
+            this.lblBaseAtk.Size = new System.Drawing.Size(65, 13);
+            this.lblBaseAtk.TabIndex = 0;
+            this.lblBaseAtk.Text = "Base Attack";
             // 
             // NewCharacterForm
             // 

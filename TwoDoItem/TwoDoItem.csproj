@@ -48,15 +48,13 @@
     <Compile Include="ItemForm.Designer.cs">
       <DependentUpon>ItemForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ItemGridItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="NewItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="NewItemForm.Designer.cs">
       <DependentUpon>NewItemForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Obtain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +74,11 @@
       <Project>{0bbb21e7-503a-4b4c-b619-300637f9be5b}</Project>
       <Name>TwoDoUtils</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NewItemForm.resx">
+      <DependentUpon>NewItemForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
